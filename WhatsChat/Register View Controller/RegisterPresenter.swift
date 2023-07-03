@@ -5,7 +5,7 @@ protocol RegisterPresenting: AnyObject {
 }
 
 final class RegisterPresenter: RegisterPresenting {
-    weak var viewController: RegisterController?
+    weak var viewController: RegisterDisplaying?
     private let coordinator: RegisterCoordinating
     
     init(coordinator: RegisterCoordinating) {
@@ -13,6 +13,6 @@ final class RegisterPresenter: RegisterPresenting {
     }
     
     func displayScreen() {
-        //
+        viewController?.doSomething()
     }
 }

@@ -46,14 +46,14 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
         return button
     }()
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
+       
     }
     
     override func buildViewHierarchy() {
@@ -98,6 +98,11 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     
     @objc private func openRegister() {
         interactor.openRegister()
+    }
+    
+    override func configureViews() {
+        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
+        self.hideKeyboardWhenTappedAround()
     }
     
 }

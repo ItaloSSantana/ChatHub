@@ -49,8 +49,14 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
         button.setTitle("Sign Up", for: .normal)
         button.titleLabel?.tintColor = .white
         button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.secondColor)
+        button.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
         return button
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,10 +110,19 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
         }
     }
     
+    @objc private func signUpPressed() {
+        guard let name = nameTextField.text  else {return}
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        if passwordTextField.text == rePasswordTextField.text {
+            print("aqui")
+            interactor.loadData(name: name, email: email, password: password)
+        }
+    }
 }
 
 extension RegisterController: RegisterDisplaying {
     func doSomething() {
-        //
+        print("Success")
     }
 }
