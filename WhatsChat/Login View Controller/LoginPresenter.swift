@@ -5,7 +5,6 @@ protocol LoginPresenting: AnyObject {
     func openRegister()
 }
 
-
 final class LoginPresenter: LoginPresenting {
     weak var viewController: LoginDisplaying?
     private var coordinator: LoginCoordinating
@@ -21,5 +20,4 @@ final class LoginPresenter: LoginPresenting {
     func openRegister() {
         coordinator.openRegister()
     }
-    
 }

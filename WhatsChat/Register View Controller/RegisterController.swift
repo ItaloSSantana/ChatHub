@@ -35,7 +35,6 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
         return textField
     }()
     
-    
     private lazy var rePasswordTextField: UITextField = {
        let textField = UITextField()
         textField.placeholder = "Confirm your password"
@@ -111,13 +110,10 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
     }
     
     @objc private func signUpPressed() {
-        guard let name = nameTextField.text  else {return}
-        guard let email = emailTextField.text else {return}
-        guard let password = passwordTextField.text else {return}
-        if passwordTextField.text == rePasswordTextField.text {
-            print("aqui")
-            interactor.loadData(name: name, email: email, password: password)
-        }
+        interactor.signUpPressed(name: nameTextField.text,
+                                 email: emailTextField.text,
+                                 password: passwordTextField.text,
+                                 rePassword: rePasswordTextField.text)
     }
 }
 

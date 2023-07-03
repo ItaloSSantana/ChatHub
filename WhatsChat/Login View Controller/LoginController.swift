@@ -7,15 +7,14 @@ protocol LoginDisplaying: AnyObject {
 
 final class LoginController: ViewController<LoginInteracting, UIView> {
     private lazy var logoImage: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(named: "logo")
         image.contentMode = .scaleToFill
         return image
     }()
     
-    
     private lazy var emailTextField: UITextField = {
-       let textField = UITextField()
+        let textField = UITextField()
         textField.placeholder = "Enter your email"
         textField.keyboardType = .emailAddress
         textField.borderStyle = .roundedRect
@@ -23,7 +22,7 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     }()
     
     private lazy var passwordTextField: UITextField = {
-       let textField = UITextField()
+        let textField = UITextField()
         textField.placeholder = "Enter your password"
         textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
@@ -54,7 +53,6 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
     }
     
     override func buildViewHierarchy() {
@@ -102,16 +100,13 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     }
     
     @objc private func loginPressed() {
-        guard let email = emailTextField.text else {return}
-        guard let password = passwordTextField.text else {return}
-        interactor.loadData(email: email, password: password)
+        interactor.loadData(email: emailTextField.text, password: passwordTextField.text)
     }
     
     override func configureViews() {
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         self.hideKeyboardWhenTappedAround()
     }
-    
 }
 
 extension LoginController: LoginDisplaying {

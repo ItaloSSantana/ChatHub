@@ -2,7 +2,7 @@ import Foundation
 import FirebaseAuth
 
 protocol RegisterInteracting: AnyObject {
-    func loadData(name: String, email: String, password: String)
+    func signUpPressed(name: String?, email: String?, password: String?, rePassword: String?)
 }
 
 final class RegisterInteractor: RegisterInteracting {
@@ -14,14 +14,17 @@ final class RegisterInteractor: RegisterInteracting {
         auth = Auth.auth()
     }
     
-    func loadData(name: String, email: String, password: String) {
-          auth?.createUser(withEmail: email, password: password, completion: { (user, erro) in
-            if erro == nil {
-                print("New User Registered")
-                self.presenter.displayScreen()
-            } else {
-                print("Failed to Register New User")
-            }
-        })
+    func signUpPressed(name: String?, email: String?, password: String?, rePassword: String?) {
+        guard let safeName = name, let safeEmail = email, let safePassword = password else {return}
+        if safePassword == rePassword {
+            auth?.createUser(withEmail: safeEmail, password: safePassword, completion: { (user, erro) in
+                if erro == nil {
+                    print("New User Registered")
+                    self.presenter.displayScreen()
+                } else {
+                    print("Failed to Register New User")
+                }
+            })
+        }
     }
 }
