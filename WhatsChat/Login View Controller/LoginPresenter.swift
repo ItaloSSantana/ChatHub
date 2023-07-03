@@ -15,7 +15,7 @@ final class LoginPresenter: LoginPresenting {
     }
     
     func displayScreen() {
-        //
+        viewController?.doSomething()
     }
     
     func openRegister() {

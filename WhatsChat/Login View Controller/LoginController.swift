@@ -35,6 +35,7 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
         button.setTitle("Login", for: .normal)
         button.titleLabel?.tintColor = .white
         button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.secondColor)
+        button.addTarget(self, action: #selector(loginPressed), for: .touchUpInside)
         return button
     }()
     
@@ -100,6 +101,12 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
         interactor.openRegister()
     }
     
+    @objc private func loginPressed() {
+        guard let email = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        interactor.loadData(email: email, password: password)
+    }
+    
     override func configureViews() {
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         self.hideKeyboardWhenTappedAround()
@@ -109,7 +116,7 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
 
 extension LoginController: LoginDisplaying {
     func doSomething() {
-        //
+        print("Logged In")
     }
 }
 
