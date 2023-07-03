@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */; };
 		0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */; };
-		0F71A9A72A523DB3000FBE3E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A62A523DB3000FBE3E /* ViewController.swift */; };
+		0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A62A523DB3000FBE3E /* LoginController.swift */; };
 		0F71A9AD2A523DB3000FBE3E /* WhatsChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9AB2A523DB3000FBE3E /* WhatsChat.xcdatamodeld */; };
 		0F71A9AF2A523DC5000FBE3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9AE2A523DC5000FBE3E /* Assets.xcassets */; };
 		0F71A9B22A523DC5000FBE3E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9B02A523DC5000FBE3E /* LaunchScreen.storyboard */; };
@@ -18,6 +18,12 @@
 		0F71A9D92A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DA2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DB2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
+		0FF711312A53025000132FC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711302A53025000132FC8 /* ViewController.swift */; };
+		0FF7113E2A53032F00132FC8 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7113D2A53032F00132FC8 /* LoginInteractor.swift */; };
+		0FF711432A53093200132FC8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711422A53093200132FC8 /* LoginPresenter.swift */; };
+		0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7114A2A530AA500132FC8 /* LoginCoordinator.swift */; };
+		0FF711502A53149000132FC8 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7114F2A53149000132FC8 /* LoginFactory.swift */; };
+		0FF711552A5315E000132FC8 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */; };
 		469927ECAE366DD21E8633FF /* Pods_WhatsChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C5DA339A707F3A0AFAD9A4 /* Pods_WhatsChat.framework */; };
 		768E9AC0E2BB104F7FA1C9D9 /* Pods_WhatsChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEF6495F3EF72D94C88DE5 /* Pods_WhatsChatTests.framework */; };
 		944FD2385A56E8C0B5B6CB08 /* Pods_WhatsChat_WhatsChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248B883946B6BD13E7F6F723 /* Pods_WhatsChat_WhatsChatUITests.framework */; };
@@ -45,7 +51,7 @@
 		0F71A99F2A523DB3000FBE3E /* WhatsChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0F71A9A62A523DB3000FBE3E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0F71A9A62A523DB3000FBE3E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		0F71A9AC2A523DB3000FBE3E /* WhatsChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WhatsChat.xcdatamodel; sourceTree = "<group>"; };
 		0F71A9AE2A523DC5000FBE3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F71A9B12A523DC5000FBE3E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +63,12 @@
 		0F71A9C72A523DC6000FBE3E /* WhatsChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsChatUITests.swift; sourceTree = "<group>"; };
 		0F71A9C92A523DC6000FBE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0FF711302A53025000132FC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0FF7113D2A53032F00132FC8 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		0FF711422A53093200132FC8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		0FF7114A2A530AA500132FC8 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		0FF7114F2A53149000132FC8 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
+		0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		134FADC40791068E7893AB5E /* Pods-WhatsChat-WhatsChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsChat-WhatsChatUITests.release.xcconfig"; path = "Target Support Files/Pods-WhatsChat-WhatsChatUITests/Pods-WhatsChat-WhatsChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1AF19E3769A1459ED00ECEFE /* Pods-WhatsChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsChat.debug.xcconfig"; path = "Target Support Files/Pods-WhatsChat/Pods-WhatsChat.debug.xcconfig"; sourceTree = "<group>"; };
 		248B883946B6BD13E7F6F723 /* Pods_WhatsChat_WhatsChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsChat_WhatsChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,7 +134,9 @@
 			children = (
 				0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */,
 				0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */,
-				0F71A9A62A523DB3000FBE3E /* ViewController.swift */,
+				0FF711302A53025000132FC8 /* ViewController.swift */,
+				0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */,
+				0FF711392A53027D00132FC8 /* New Group */,
 				0F71A9AE2A523DC5000FBE3E /* Assets.xcassets */,
 				0F71A9B02A523DC5000FBE3E /* LaunchScreen.storyboard */,
 				0F71A9B32A523DC5000FBE3E /* Info.plist */,
@@ -148,6 +162,18 @@
 				0F71A9C92A523DC6000FBE3E /* Info.plist */,
 			);
 			path = WhatsChatUITests;
+			sourceTree = "<group>";
+		};
+		0FF711392A53027D00132FC8 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				0F71A9A62A523DB3000FBE3E /* LoginController.swift */,
+				0FF7113D2A53032F00132FC8 /* LoginInteractor.swift */,
+				0FF711422A53093200132FC8 /* LoginPresenter.swift */,
+				0FF7114A2A530AA500132FC8 /* LoginCoordinator.swift */,
+				0FF7114F2A53149000132FC8 /* LoginFactory.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		957A41FF518C833F438771B9 /* Frameworks */ = {
@@ -413,9 +439,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F71A9A72A523DB3000FBE3E /* ViewController.swift in Sources */,
+				0FF711312A53025000132FC8 /* ViewController.swift in Sources */,
+				0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */,
+				0FF711432A53093200132FC8 /* LoginPresenter.swift in Sources */,
+				0FF711552A5315E000132FC8 /* MainFlowCoordinator.swift in Sources */,
+				0FF7113E2A53032F00132FC8 /* LoginInteractor.swift in Sources */,
 				0F71A9AD2A523DB3000FBE3E /* WhatsChat.xcdatamodeld in Sources */,
+				0FF711502A53149000132FC8 /* LoginFactory.swift in Sources */,
 				0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */,
+				0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */,
 				0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
