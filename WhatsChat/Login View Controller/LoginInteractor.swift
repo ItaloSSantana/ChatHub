@@ -2,6 +2,7 @@ import Foundation
 
 protocol LoginInteracting: AnyObject {
     func loadData()
+    func openRegister()
 }
 
 final class LoginInteractor: LoginInteracting {
@@ -13,5 +14,8 @@ final class LoginInteractor: LoginInteracting {
     
     func loadData() {
         //
+    }
+    func openRegister() {
+        presenter.openRegister()
     }
 }

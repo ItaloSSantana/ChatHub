@@ -14,7 +14,16 @@ class MainFlowCoordinator {
 }
 
 extension MainFlowCoordinator: LoginDelegate {
+    func openRegister() {
+        let registerController = RegisterFactory.make(delegate: self)
+        navigationController.pushViewController(registerController, animated: true)
+    }
+    
     func continueFlow() {
         //
     }
+}
+
+extension MainFlowCoordinator: RegisterDelegate {
+    
 }

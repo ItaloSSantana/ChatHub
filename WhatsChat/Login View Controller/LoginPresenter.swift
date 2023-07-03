@@ -2,6 +2,7 @@ import Foundation
 
 protocol LoginPresenting: AnyObject {
     func displayScreen()
+    func openRegister()
 }
 
 
@@ -16,4 +17,9 @@ final class LoginPresenter: LoginPresenting {
     func displayScreen() {
         //
     }
+    
+    func openRegister() {
+        coordinator.openRegister()
+    }
+    
 }

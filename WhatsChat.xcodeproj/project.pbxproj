@@ -24,6 +24,14 @@
 		0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7114A2A530AA500132FC8 /* LoginCoordinator.swift */; };
 		0FF711502A53149000132FC8 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7114F2A53149000132FC8 /* LoginFactory.swift */; };
 		0FF711552A5315E000132FC8 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */; };
+		0FF711772A53264600132FC8 /* Hexadecimals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711762A53264600132FC8 /* Hexadecimals.swift */; };
+		0FF7117F2A532E1100132FC8 /* Spaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7117E2A532E1100132FC8 /* Spaces.swift */; };
+		0FF7118A2A5331B500132FC8 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711892A5331B500132FC8 /* RegisterController.swift */; };
+		0FF711962A53322300132FC8 /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711952A53322300132FC8 /* RegisterInteractor.swift */; };
+		0FF7119B2A53326200132FC8 /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7119A2A53326200132FC8 /* RegisterPresenter.swift */; };
+		0FF711A02A5332D900132FC8 /* RegisterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7119F2A5332D900132FC8 /* RegisterCoordinator.swift */; };
+		0FF711A52A53349700132FC8 /* RegisterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711A42A53349700132FC8 /* RegisterFactory.swift */; };
+		0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711A92A53379B00132FC8 /* Constants.swift */; };
 		469927ECAE366DD21E8633FF /* Pods_WhatsChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C5DA339A707F3A0AFAD9A4 /* Pods_WhatsChat.framework */; };
 		768E9AC0E2BB104F7FA1C9D9 /* Pods_WhatsChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CEF6495F3EF72D94C88DE5 /* Pods_WhatsChatTests.framework */; };
 		944FD2385A56E8C0B5B6CB08 /* Pods_WhatsChat_WhatsChatUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248B883946B6BD13E7F6F723 /* Pods_WhatsChat_WhatsChatUITests.framework */; };
@@ -69,6 +77,14 @@
 		0FF7114A2A530AA500132FC8 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		0FF7114F2A53149000132FC8 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		0FF711762A53264600132FC8 /* Hexadecimals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexadecimals.swift; sourceTree = "<group>"; };
+		0FF7117E2A532E1100132FC8 /* Spaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spaces.swift; sourceTree = "<group>"; };
+		0FF711892A5331B500132FC8 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		0FF711952A53322300132FC8 /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
+		0FF7119A2A53326200132FC8 /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
+		0FF7119F2A5332D900132FC8 /* RegisterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCoordinator.swift; sourceTree = "<group>"; };
+		0FF711A42A53349700132FC8 /* RegisterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFactory.swift; sourceTree = "<group>"; };
+		0FF711A92A53379B00132FC8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		134FADC40791068E7893AB5E /* Pods-WhatsChat-WhatsChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsChat-WhatsChatUITests.release.xcconfig"; path = "Target Support Files/Pods-WhatsChat-WhatsChatUITests/Pods-WhatsChat-WhatsChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1AF19E3769A1459ED00ECEFE /* Pods-WhatsChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsChat.debug.xcconfig"; path = "Target Support Files/Pods-WhatsChat/Pods-WhatsChat.debug.xcconfig"; sourceTree = "<group>"; };
 		248B883946B6BD13E7F6F723 /* Pods_WhatsChat_WhatsChatUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsChat_WhatsChatUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,9 +150,13 @@
 			children = (
 				0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */,
 				0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */,
+				0FF711762A53264600132FC8 /* Hexadecimals.swift */,
 				0FF711302A53025000132FC8 /* ViewController.swift */,
+				0FF711A92A53379B00132FC8 /* Constants.swift */,
+				0FF7117E2A532E1100132FC8 /* Spaces.swift */,
 				0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */,
-				0FF711392A53027D00132FC8 /* New Group */,
+				0FF711392A53027D00132FC8 /* Login View Controller */,
+				0FF7118E2A5331C000132FC8 /* Register View Controller */,
 				0F71A9AE2A523DC5000FBE3E /* Assets.xcassets */,
 				0F71A9B02A523DC5000FBE3E /* LaunchScreen.storyboard */,
 				0F71A9B32A523DC5000FBE3E /* Info.plist */,
@@ -164,7 +184,7 @@
 			path = WhatsChatUITests;
 			sourceTree = "<group>";
 		};
-		0FF711392A53027D00132FC8 /* New Group */ = {
+		0FF711392A53027D00132FC8 /* Login View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				0F71A9A62A523DB3000FBE3E /* LoginController.swift */,
@@ -173,7 +193,19 @@
 				0FF7114A2A530AA500132FC8 /* LoginCoordinator.swift */,
 				0FF7114F2A53149000132FC8 /* LoginFactory.swift */,
 			);
-			path = "New Group";
+			path = "Login View Controller";
+			sourceTree = "<group>";
+		};
+		0FF7118E2A5331C000132FC8 /* Register View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0FF711892A5331B500132FC8 /* RegisterController.swift */,
+				0FF711952A53322300132FC8 /* RegisterInteractor.swift */,
+				0FF7119A2A53326200132FC8 /* RegisterPresenter.swift */,
+				0FF7119F2A5332D900132FC8 /* RegisterCoordinator.swift */,
+				0FF711A42A53349700132FC8 /* RegisterFactory.swift */,
+			);
+			path = "Register View Controller";
 			sourceTree = "<group>";
 		};
 		957A41FF518C833F438771B9 /* Frameworks */ = {
@@ -440,15 +472,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FF711312A53025000132FC8 /* ViewController.swift in Sources */,
+				0FF711962A53322300132FC8 /* RegisterInteractor.swift in Sources */,
+				0FF7118A2A5331B500132FC8 /* RegisterController.swift in Sources */,
+				0FF711A52A53349700132FC8 /* RegisterFactory.swift in Sources */,
 				0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */,
 				0FF711432A53093200132FC8 /* LoginPresenter.swift in Sources */,
 				0FF711552A5315E000132FC8 /* MainFlowCoordinator.swift in Sources */,
 				0FF7113E2A53032F00132FC8 /* LoginInteractor.swift in Sources */,
+				0FF711772A53264600132FC8 /* Hexadecimals.swift in Sources */,
 				0F71A9AD2A523DB3000FBE3E /* WhatsChat.xcdatamodeld in Sources */,
 				0FF711502A53149000132FC8 /* LoginFactory.swift in Sources */,
+				0FF7119B2A53326200132FC8 /* RegisterPresenter.swift in Sources */,
 				0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */,
 				0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */,
+				0FF711A02A5332D900132FC8 /* RegisterCoordinator.swift in Sources */,
+				0FF7117F2A532E1100132FC8 /* Spaces.swift in Sources */,
 				0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */,
+				0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
