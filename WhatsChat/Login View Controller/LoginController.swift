@@ -16,6 +16,7 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     private lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter your email"
+        textField.text = "1@2.com"
         textField.keyboardType = .emailAddress
         textField.borderStyle = .roundedRect
         return textField
@@ -54,11 +55,13 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        interactor.verifyLogin()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("VIEW DID LEOAD")
+        interactor.verifyLogin()
     }
     
     override func buildViewHierarchy() {

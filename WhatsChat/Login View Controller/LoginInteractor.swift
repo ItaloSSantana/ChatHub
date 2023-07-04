@@ -32,14 +32,9 @@ final class LoginInteractor: LoginInteracting {
     }
     
     func verifyLogin() {
-        auth?.addStateDidChangeListener({ (authentication, user) in
-            if user != nil {
-                print("user already logged in")
-                self.presenter.confirmAutoLogin()
-            } else {
-                print("Enter email and password first")
-            }
-        })
+        if let user = auth?.currentUser {
+            self.presenter.confirmAutoLogin()
+        }
     }
     
     func openRegister() {
