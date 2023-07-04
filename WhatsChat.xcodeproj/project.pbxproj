@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F1468932A54564D0012E3A6 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468922A54564D0012E3A6 /* ContactsController.swift */; };
+		0F14689C2A54568C0012E3A6 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F14689B2A54568C0012E3A6 /* ContactsInteractor.swift */; };
+		0F1468A12A5456980012E3A6 /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468A02A5456980012E3A6 /* ContactsPresenter.swift */; };
+		0F1468A62A5456A90012E3A6 /* ContactsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468A52A5456A90012E3A6 /* ContactsCoordinator.swift */; };
+		0F1468AB2A5456B70012E3A6 /* ContactsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468AA2A5456B70012E3A6 /* ContactsFactory.swift */; };
+		0F1468B12A5456E70012E3A6 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468B02A5456E70012E3A6 /* MessagesController.swift */; };
+		0F1468B62A5456F50012E3A6 /* MessagesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468B52A5456F50012E3A6 /* MessagesInteractor.swift */; };
+		0F1468BB2A5457010012E3A6 /* MessagesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468BA2A5457010012E3A6 /* MessagesPresenter.swift */; };
+		0F1468C02A54570F0012E3A6 /* MessagesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468BF2A54570F0012E3A6 /* MessagesCoordinator.swift */; };
+		0F1468C52A54571B0012E3A6 /* MessagesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468C42A54571B0012E3A6 /* MessagesFactory.swift */; };
+		0F1468CB2A54574C0012E3A6 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468CA2A54574C0012E3A6 /* SettingsController.swift */; };
+		0F1468D32A5457580012E3A6 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468D22A5457580012E3A6 /* SettingsInteractor.swift */; };
+		0F1468D82A5457640012E3A6 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468D72A5457640012E3A6 /* SettingsPresenter.swift */; };
+		0F1468DD2A54576F0012E3A6 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468DC2A54576F0012E3A6 /* SettingsCoordinator.swift */; };
+		0F1468E22A54577E0012E3A6 /* SettingsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468E12A54577E0012E3A6 /* SettingsFactory.swift */; };
 		0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */; };
 		0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */; };
 		0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A62A523DB3000FBE3E /* LoginController.swift */; };
@@ -57,6 +72,21 @@
 
 /* Begin PBXFileReference section */
 		00CEF6495F3EF72D94C88DE5 /* Pods_WhatsChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F1468922A54564D0012E3A6 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
+		0F14689B2A54568C0012E3A6 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
+		0F1468A02A5456980012E3A6 /* ContactsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPresenter.swift; sourceTree = "<group>"; };
+		0F1468A52A5456A90012E3A6 /* ContactsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCoordinator.swift; sourceTree = "<group>"; };
+		0F1468AA2A5456B70012E3A6 /* ContactsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsFactory.swift; sourceTree = "<group>"; };
+		0F1468B02A5456E70012E3A6 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
+		0F1468B52A5456F50012E3A6 /* MessagesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesInteractor.swift; sourceTree = "<group>"; };
+		0F1468BA2A5457010012E3A6 /* MessagesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesPresenter.swift; sourceTree = "<group>"; };
+		0F1468BF2A54570F0012E3A6 /* MessagesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCoordinator.swift; sourceTree = "<group>"; };
+		0F1468C42A54571B0012E3A6 /* MessagesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesFactory.swift; sourceTree = "<group>"; };
+		0F1468CA2A54574C0012E3A6 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		0F1468D22A5457580012E3A6 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		0F1468D72A5457640012E3A6 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		0F1468DC2A54576F0012E3A6 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		0F1468E12A54577E0012E3A6 /* SettingsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFactory.swift; sourceTree = "<group>"; };
 		0F71A99F2A523DB3000FBE3E /* WhatsChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +155,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F1468972A54565E0012E3A6 /* ContactsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0F1468922A54564D0012E3A6 /* ContactsController.swift */,
+				0F14689B2A54568C0012E3A6 /* ContactsInteractor.swift */,
+				0F1468A02A5456980012E3A6 /* ContactsPresenter.swift */,
+				0F1468A52A5456A90012E3A6 /* ContactsCoordinator.swift */,
+				0F1468AA2A5456B70012E3A6 /* ContactsFactory.swift */,
+			);
+			path = ContactsViewController;
+			sourceTree = "<group>";
+		};
+		0F1468AF2A5456CE0012E3A6 /* MessagesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0F1468B02A5456E70012E3A6 /* MessagesController.swift */,
+				0F1468B52A5456F50012E3A6 /* MessagesInteractor.swift */,
+				0F1468BA2A5457010012E3A6 /* MessagesPresenter.swift */,
+				0F1468BF2A54570F0012E3A6 /* MessagesCoordinator.swift */,
+				0F1468C42A54571B0012E3A6 /* MessagesFactory.swift */,
+			);
+			path = MessagesViewController;
+			sourceTree = "<group>";
+		};
+		0F1468C92A5457360012E3A6 /* SettingsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0F1468CA2A54574C0012E3A6 /* SettingsController.swift */,
+				0F1468D22A5457580012E3A6 /* SettingsInteractor.swift */,
+				0F1468D72A5457640012E3A6 /* SettingsPresenter.swift */,
+				0F1468DC2A54576F0012E3A6 /* SettingsCoordinator.swift */,
+				0F1468E12A54577E0012E3A6 /* SettingsFactory.swift */,
+			);
+			path = SettingsViewController;
+			sourceTree = "<group>";
+		};
 		0F71A9962A523DB3000FBE3E = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +226,9 @@
 				0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */,
 				0FF711392A53027D00132FC8 /* Login View Controller */,
 				0FF7118E2A5331C000132FC8 /* Register View Controller */,
+				0F1468972A54565E0012E3A6 /* ContactsViewController */,
+				0F1468AF2A5456CE0012E3A6 /* MessagesViewController */,
+				0F1468C92A5457360012E3A6 /* SettingsViewController */,
 				0F71A9AE2A523DC5000FBE3E /* Assets.xcassets */,
 				0F71A9B02A523DC5000FBE3E /* LaunchScreen.storyboard */,
 				0F71A9B32A523DC5000FBE3E /* Info.plist */,
@@ -474,23 +543,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F1468C02A54570F0012E3A6 /* MessagesCoordinator.swift in Sources */,
 				0FF711312A53025000132FC8 /* ViewController.swift in Sources */,
 				0FF711962A53322300132FC8 /* RegisterInteractor.swift in Sources */,
 				0FF7118A2A5331B500132FC8 /* RegisterController.swift in Sources */,
 				0FF711A52A53349700132FC8 /* RegisterFactory.swift in Sources */,
 				0FF711B22A533D4E00132FC8 /* DismissKeyboard.swift in Sources */,
+				0F1468CB2A54574C0012E3A6 /* SettingsController.swift in Sources */,
+				0F14689C2A54568C0012E3A6 /* ContactsInteractor.swift in Sources */,
 				0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */,
+				0F1468A12A5456980012E3A6 /* ContactsPresenter.swift in Sources */,
+				0F1468BB2A5457010012E3A6 /* MessagesPresenter.swift in Sources */,
+				0F1468932A54564D0012E3A6 /* ContactsController.swift in Sources */,
+				0F1468C52A54571B0012E3A6 /* MessagesFactory.swift in Sources */,
 				0FF711432A53093200132FC8 /* LoginPresenter.swift in Sources */,
+				0F1468B12A5456E70012E3A6 /* MessagesController.swift in Sources */,
 				0FF711552A5315E000132FC8 /* MainFlowCoordinator.swift in Sources */,
+				0F1468D32A5457580012E3A6 /* SettingsInteractor.swift in Sources */,
+				0F1468B62A5456F50012E3A6 /* MessagesInteractor.swift in Sources */,
 				0FF7113E2A53032F00132FC8 /* LoginInteractor.swift in Sources */,
+				0F1468DD2A54576F0012E3A6 /* SettingsCoordinator.swift in Sources */,
 				0FF711772A53264600132FC8 /* Hexadecimals.swift in Sources */,
 				0F71A9AD2A523DB3000FBE3E /* WhatsChat.xcdatamodeld in Sources */,
 				0FF711502A53149000132FC8 /* LoginFactory.swift in Sources */,
+				0F1468AB2A5456B70012E3A6 /* ContactsFactory.swift in Sources */,
 				0FF7119B2A53326200132FC8 /* RegisterPresenter.swift in Sources */,
 				0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */,
 				0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */,
+				0F1468A62A5456A90012E3A6 /* ContactsCoordinator.swift in Sources */,
+				0F1468D82A5457640012E3A6 /* SettingsPresenter.swift in Sources */,
 				0FF711A02A5332D900132FC8 /* RegisterCoordinator.swift in Sources */,
 				0FF7117F2A532E1100132FC8 /* Spaces.swift in Sources */,
+				0F1468E22A54577E0012E3A6 /* SettingsFactory.swift in Sources */,
 				0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */,
 				0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */,
 			);
