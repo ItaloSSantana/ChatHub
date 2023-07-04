@@ -1,14 +1,16 @@
 import UIKit
 
 protocol LoginDelegate: AnyObject {
-    func continueFlow()
+    func loginFlow()
     func openRegister()
+    func confirmAutoLogin()
 }
 
 protocol LoginCoordinating: AnyObject {
     var viewController: UIViewController? { get set }
-    func continueFlow()
+    func confirmLogin()
     func openRegister()
+    func confirmAutoLogin()
 }
 
 final class LoginCoordinator: LoginCoordinating {
@@ -19,11 +21,16 @@ final class LoginCoordinator: LoginCoordinating {
         self.delegate = delegate
     }
     
-    func continueFlow() {
-        //
+    func confirmLogin() {
+        delegate.loginFlow()
     }
     
     func openRegister() {
         delegate.openRegister()
     }
+    
+    func confirmAutoLogin() {
+        delegate.confirmAutoLogin()
+    }
+    
 }

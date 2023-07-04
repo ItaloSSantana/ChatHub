@@ -2,8 +2,9 @@ import Foundation
 import FirebaseAuth
 
 protocol LoginInteracting: AnyObject {
-    func loadData(email: String?, password: String?)
+    func validateLogin(email: String?, password: String?)
     func openRegister()
+    func verifyLogin()
 }
 
 final class LoginInteractor: LoginInteracting {
@@ -15,7 +16,7 @@ final class LoginInteractor: LoginInteracting {
         auth = Auth.auth()
     }
     
-    func loadData(email: String?, password: String?) {
+    func validateLogin(email: String?, password: String?) {
         guard let safeEmail = email, let safePassword = password else {
             //apresenta erro (presenter.showError)
             return
@@ -23,9 +24,20 @@ final class LoginInteractor: LoginInteracting {
         auth?.signIn(withEmail: safeEmail, password: safePassword, completion: { (user, error) in
             if error == nil {
                 print("Logged Succefully")
-                self.presenter.displayScreen()
+                self.presenter.confirmLogin()
             } else {
-                print(error)
+                print("Not logged")
+            }
+        })
+    }
+    
+    func verifyLogin() {
+        auth?.addStateDidChangeListener({ (authentication, user) in
+            if user != nil {
+                print("user already logged in")
+                self.presenter.confirmAutoLogin()
+            } else {
+                print("Enter email and password first")
             }
         })
     }

@@ -1,8 +1,9 @@
 import Foundation
 
 protocol LoginPresenting: AnyObject {
-    func displayScreen()
+    func confirmLogin()
     func openRegister()
+    func confirmAutoLogin()
 }
 
 final class LoginPresenter: LoginPresenting {
@@ -13,11 +14,15 @@ final class LoginPresenter: LoginPresenting {
         self.coordinator = coordinator
     }
     
-    func displayScreen() {
-        viewController?.doSomething()
+    func confirmLogin() {
+        coordinator.confirmLogin()
     }
     
     func openRegister() {
         coordinator.openRegister()
+    }
+    
+    func confirmAutoLogin() {
+        coordinator.confirmAutoLogin()
     }
 }

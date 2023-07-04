@@ -49,6 +49,12 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        interactor.verifyLogin()
     }
     
     override func viewDidLoad() {
@@ -100,7 +106,7 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     }
     
     @objc private func loginPressed() {
-        interactor.loadData(email: emailTextField.text, password: passwordTextField.text)
+        interactor.validateLogin(email: emailTextField.text, password: passwordTextField.text)
     }
     
     override func configureViews() {
