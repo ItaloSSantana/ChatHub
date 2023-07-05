@@ -10,6 +10,6 @@ struct Constants {
         static let settings = "ajustes"
         static let contacts = "contatos"
         static let messages = "conversas"
+        static let profileImage = "profileImage"
     }
-    
 }

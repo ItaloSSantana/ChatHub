@@ -18,7 +18,7 @@ final class RegisterCoordinator: RegisterCoordinating {
     }
     
     func continueFlow() {
-        //
+        delegate.continueFlow()
     }
     
     

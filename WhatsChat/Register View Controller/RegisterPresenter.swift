@@ -14,5 +14,6 @@ final class RegisterPresenter: RegisterPresenting {
     
     func displayScreen() {
         viewController?.doSomething()
+        coordinator.continueFlow()
     }
 }

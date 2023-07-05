@@ -59,8 +59,6 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("VIEW DID LEOAD")
         interactor.verifyLogin()
     }
     

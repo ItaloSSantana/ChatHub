@@ -1,5 +1,6 @@
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 protocol RegisterInteracting: AnyObject {
     func signUpPressed(name: String?, email: String?, password: String?, rePassword: String?)
@@ -8,23 +9,27 @@ protocol RegisterInteracting: AnyObject {
 final class RegisterInteractor: RegisterInteracting {
     private let presenter: RegisterPresenting
     var auth: Auth?
+    var firestore: Firestore?
     
     init(presenter: RegisterPresenting) {
         self.presenter = presenter
         auth = Auth.auth()
+        firestore = Firestore.firestore()
     }
     
     func signUpPressed(name: String?, email: String?, password: String?, rePassword: String?) {
-        guard let safeName = name, let safeEmail = email, let safePassword = password else {return}
-        if safePassword == rePassword {
-            auth?.createUser(withEmail: safeEmail, password: safePassword, completion: { (user, erro) in
-                if erro == nil {
-                    print("New User Registered")
-                    self.presenter.displayScreen()
-                } else {
-                    print("Failed to Register New User")
-                }
-            })
+        guard let safeName = name, let safeEmail = email, let safePassword = password, safePassword == rePassword else {
+            print("Error creating user")
+            return
         }
+        auth?.createUser(withEmail: safeEmail, password: safePassword, completion: { (resultData, erro) in
+            // Save user data to firebase
+            guard let userID = resultData?.user.uid else {return}
+            self.firestore?.collection("users")
+                .document(userID)
+                .setData(["name" : safeName, "email": safeEmail])
+            self.presenter.displayScreen()
+        })
     }
 }
+

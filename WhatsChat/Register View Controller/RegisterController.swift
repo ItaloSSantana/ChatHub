@@ -62,6 +62,11 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func buildViewHierarchy() {
         view.addSubview(userImage)
         view.addSubview(nameTextField)

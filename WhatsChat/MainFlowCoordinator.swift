@@ -32,6 +32,7 @@ extension MainFlowCoordinator: LoginDelegate {
 
 extension MainFlowCoordinator: RegisterDelegate {
     func continueFlow() {
-        //
+        let tabController = CustomTabBarController()
+        navigationController.pushViewController(tabController, animated: true)
     }
 }
