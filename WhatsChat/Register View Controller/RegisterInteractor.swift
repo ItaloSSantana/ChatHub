@@ -24,10 +24,12 @@ final class RegisterInteractor: RegisterInteracting {
         }
         auth?.createUser(withEmail: safeEmail, password: safePassword, completion: { (resultData, erro) in
             // Save user data to firebase
+            
             guard let userID = resultData?.user.uid else {return}
             self.firestore?.collection("users")
                 .document(userID)
                 .setData(["name" : safeName, "email": safeEmail])
+            
             self.presenter.displayScreen()
         })
     }

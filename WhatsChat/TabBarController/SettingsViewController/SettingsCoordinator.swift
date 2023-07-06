@@ -1,13 +1,13 @@
 import UIKit
 
 protocol SettingsDelegate: AnyObject {
-    func continueFlow()
+    func editPressed()
     func logoutPressed()
 }
 
 protocol SettingsCoordinating: AnyObject {
     var viewController: UIViewController? {get set}
-    func continueFlow()
+    func editPressed()
     func logoutPressed()
 }
 
@@ -19,8 +19,8 @@ class SettingsCoordinator: SettingsCoordinating {
         self.delegate = delegate
     }
     
-    func continueFlow() {
-        //
+    func editPressed() {
+        delegate.editPressed()
     }
     
     func logoutPressed() {

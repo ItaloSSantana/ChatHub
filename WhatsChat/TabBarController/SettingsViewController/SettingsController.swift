@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SettingsDisplaying: AnyObject {
-    func doSomething()
+    func getUserData(data: ProfileViewModel)
 }
 
 final class SettingsController: ViewController<SettingsInteracting,UIView> {
@@ -39,30 +39,32 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
     
     private lazy var userDisplayName: UILabel = {
         let label = UILabel()
-        label.text = "name lastname"
+        label.text = "--"
         return label
     }()
     
     private lazy var userDisplayEmail: UILabel = {
         let label = UILabel()
-        label.text = "email@email.com"
+        label.text = "--"
         return label
     }()
     
     private lazy var changeImage: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Change Image", for: .normal)
+        button.setTitle("Edit Profile", for: .normal)
         button.titleLabel?.tintColor = .systemBlue
-        button.addTarget(self, action: #selector(changeImagePressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(editProfilePressed), for: .touchUpInside)
         return button
     }()
-  
-    private var imagePicker = UIImagePickerController()
+      
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor.loadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker.delegate = self
-        view.backgroundColor = .white
+        
     }
     
     override func buildViewHierarchy() {
@@ -106,22 +108,19 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
     @objc private func logoutPressed() {
         interactor.logoutPressed()
     }
+    
+    @objc private func editProfilePressed() {
+        interactor.editPressed()
+    }
+    
+    override func configureViews() {
+        view.backgroundColor = .white
+    }
 }
 
 extension SettingsController: SettingsDisplaying {
-    func doSomething() {
-        //
-    }
-}
-
-extension SettingsController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @objc private func changeImagePressed() {
-        imagePicker.sourceType = .savedPhotosAlbum
-        present(imagePicker, animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let safeImage = info [UIImagePickerController.InfoKey.originalImage] as? UIImage
-        self.userImage.image = safeImage
-        imagePicker.dismiss(animated: true, completion: nil)
+    func getUserData(data: ProfileViewModel) {
+        userDisplayEmail.text = data.email
+        userDisplayName.text = data.name
     }
 }

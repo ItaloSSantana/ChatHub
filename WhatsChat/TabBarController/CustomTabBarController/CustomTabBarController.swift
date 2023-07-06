@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomTabBarController: UITabBarController{
+class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let messagesController = MessagesFactory.make(delegate: self)
@@ -39,6 +39,11 @@ extension CustomTabBarController: ContactsDelegate {
 }
 
 extension CustomTabBarController: SettingsDelegate {
+    func editPressed() {
+        let editController = EditProfileFactory.make(delegate: self)
+        navigationController?.pushViewController(editController, animated: true)
+    }
+    
     func logoutPressed() {
         print("at tab bar")
         self.navigationController?.popToRootViewController(animated: true)
@@ -47,4 +52,11 @@ extension CustomTabBarController: SettingsDelegate {
 
 extension CustomTabBarController: MessagesDelegate {
     
+}
+
+extension CustomTabBarController: EditProfileDelegate {
+    func confirmPressed() {
+        print("exit edit controller")
+        navigationController?.popViewController(animated: true)
+    }
 }
