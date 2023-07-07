@@ -2,11 +2,13 @@ import UIKit
 
 protocol AddContactDelegate: AnyObject {
     func continueFlow()
+    func addContactPressed()
 }
 
 protocol AddContactCoordinating: AnyObject {
     var viewController: UIViewController? {get set}
     func continueFlow()
+    func addContactPressed()
 }
 
 class AddContactCoordinator: AddContactCoordinating {
@@ -20,4 +22,8 @@ class AddContactCoordinator: AddContactCoordinating {
     func continueFlow() {
         //
     }
+    func addContactPressed() {
+        delegate.addContactPressed()
+    }
+    
 }

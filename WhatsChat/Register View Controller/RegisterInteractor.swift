@@ -28,7 +28,7 @@ final class RegisterInteractor: RegisterInteracting {
             guard let userID = resultData?.user.uid else {return}
             self.firestore?.collection("users")
                 .document(userID)
-                .setData(["name" : safeName, "email": safeEmail])
+                .setData(["name" : safeName, "email": safeEmail, "id": userID, "bio": ""])
             
             self.presenter.displayScreen()
         })

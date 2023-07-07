@@ -182,13 +182,13 @@
 		0F1468972A54565E0012E3A6 /* ContactsViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0FC394022A587D6E00E0FAE4 /* AddContactViewController */,
 				0F1468922A54564D0012E3A6 /* ContactsController.swift */,
 				0F14689B2A54568C0012E3A6 /* ContactsInteractor.swift */,
 				0F1468A02A5456980012E3A6 /* ContactsPresenter.swift */,
 				0F1468A52A5456A90012E3A6 /* ContactsCoordinator.swift */,
 				0F1468AA2A5456B70012E3A6 /* ContactsFactory.swift */,
 				0FC393FD2A585E5200E0FAE4 /* ContactsCell.swift */,
+				0FC394022A587D6E00E0FAE4 /* AddContactViewController */,
 			);
 			path = ContactsViewController;
 			sourceTree = "<group>";

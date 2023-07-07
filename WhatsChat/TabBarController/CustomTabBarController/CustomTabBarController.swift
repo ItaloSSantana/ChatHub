@@ -65,5 +65,7 @@ extension CustomTabBarController: EditProfileDelegate {
 }
 
 extension CustomTabBarController: AddContactDelegate {
-    
+    func addContactPressed() {
+        navigationController?.popViewController(animated: true)
+    }
 }
