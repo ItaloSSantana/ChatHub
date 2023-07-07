@@ -13,11 +13,13 @@ final class SettingsInteractor: SettingsInteracting {
     private let presenter: SettingsPresenting
     var auth: Auth?
     private var firestore: Firestore?
+    private var storage: Storage?
     private var userID: String = ""
     init(presenter: SettingsPresenting) {
         self.presenter = presenter
         auth = Auth.auth()
         firestore = Firestore.firestore()
+        storage = Storage.storage()
         if let id = auth?.currentUser?.uid {
             self.userID = id
         }
@@ -25,26 +27,32 @@ final class SettingsInteractor: SettingsInteracting {
     
     func loadData(){
         let userRef = firestore?.collection("users").document(userID)
-        
         userRef?.getDocument(completion: { (snapshot, error) in
-            guard let safeData = snapshot?.data() else {return}
-            let safeName = safeData["name"] as? String
-            let safeEmail = safeData["email"] as? String
-            let viewModel = ProfileViewModel(name: safeName, email: safeEmail)
-            self.presenter.displayScreen(data: viewModel)
-            
+                guard let safeData = snapshot?.data(),
+                      let safeName = safeData["name"] as? String,
+                      let safeBio = safeData["bio"] as? String,
+                      let safeEmail = safeData["email"] as? String,
+                      let imageUrl = safeData["imageUrl"] as? String,
+                      let storageRef = self.storage?.reference(forURL: imageUrl) else {return}
+                storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) -> Void in
+                    guard let safeData = data else {return}
+                        if let image = UIImage(data: safeData) {
+                            let viewModel = ProfileViewModel(name: safeName, email: safeEmail, image: image, bio: safeBio)
+                            self.presenter.displayScreen(data: viewModel)
+                }
+            }
         })
     }
-    
-    func logoutPressed() {
-        do {
-            try auth?.signOut()
-            print("LogoutSuccess")
-            presenter.logoutPressed()
-        } catch {
-            print("Error logging out user")
+        
+        func logoutPressed() {
+            do {
+                try auth?.signOut()
+                print("LogoutSuccess")
+                presenter.logoutPressed()
+            } catch {
+                print("Error logging out user")
+            }
         }
-    }
     
     func editPressed() {
         presenter.editPressed()
@@ -52,7 +60,16 @@ final class SettingsInteractor: SettingsInteracting {
 }
 
 
-struct ProfileViewModel {
+class ProfileViewModel {
     let name: String?
     let email: String?
+    let image: UIImage?
+    let bio: String?
+    
+    init(name: String, email: String,  image: UIImage, bio: String) {
+        self.name = name
+        self.email = email
+        self.image = image
+        self.bio = bio
+    }
 }

@@ -27,7 +27,7 @@ class CustomTabBarController: UITabBarController {
         let images = [Constants.Images.messages,Constants.Images.contacts, Constants.Images.settings]
 
           for x in 0...2 {
-              items[x].image = UIImage(named: images[x])?.withRenderingMode(.alwaysOriginal)
+            items[x].image = UIImage(named: images[x])?.withRenderingMode(.automatic)
           }
       }
 }
@@ -45,7 +45,6 @@ extension CustomTabBarController: SettingsDelegate {
     }
     
     func logoutPressed() {
-        print("at tab bar")
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
@@ -56,7 +55,6 @@ extension CustomTabBarController: MessagesDelegate {
 
 extension CustomTabBarController: EditProfileDelegate {
     func confirmPressed() {
-        print("exit edit controller")
         navigationController?.popViewController(animated: true)
     }
 }

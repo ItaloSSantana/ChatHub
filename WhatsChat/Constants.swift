@@ -2,8 +2,9 @@ import Foundation
 
 struct Constants {
     struct Colors {
-        static let defaultColor = "0B6156"
-        static let secondColor = "023933"
+        static let defaultColor = "396EB0"//"0B6156"
+        static let secondColor =  "2E4C6D" //"023933"
+        static let thirdColor = "E3BEC6"
     }
     
     struct Images {

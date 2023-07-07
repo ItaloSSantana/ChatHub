@@ -4,7 +4,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 protocol EditProfileInteracting: AnyObject {
-    func confirmPressed(name: String?, email: String?, bio: String)
+    func confirmPressed(name: String?, email: String?, bio: String?)
     func changeImage(image: UIImage)
 }
 
@@ -26,27 +26,20 @@ final class EditProfileInteractor: EditProfileInteracting {
         }
     }
     
-    func confirmPressed(name: String?, email: String?, bio: String) {
+    func confirmPressed(name: String?, email: String?, bio: String?) {
         let currentUser = auth?.currentUser
-        if let safeEmail = email, let safeName = name {
+        if let safeEmail = email, let safeName = name, let safeBio = bio {
             currentUser?.updateEmail(to: safeEmail, completion: { error in
                 if let error = error {
                     print("Email not changed")
                 } else {
-                    print("CHANGED EMAIL")
+                    print(safeBio)
                     self.firestore?.collection("users")
                         .document(self.userID)
-                        .updateData(["email": safeEmail, "name": safeName])
+                        .updateData(["email": safeEmail, "name": safeName, "bio": safeBio])
+                    self.presenter.confirmPressed()
                 }
             })
-        }
-        if bio != "" {
-            firestore?.collection("users")
-                .document(userID)
-                .updateData(["bio": bio])
-            presenter.confirmPressed()
-        } else {
-            print("At least change your bio to confirm changes")
         }
     }
     
