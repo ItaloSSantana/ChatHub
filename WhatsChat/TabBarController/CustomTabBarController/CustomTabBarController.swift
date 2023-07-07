@@ -4,13 +4,13 @@ class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let messagesController = MessagesFactory.make(delegate: self)
-        messagesController.title = "Messages"
+        messagesController.tabBarController?.navigationItem.title = "Messages"
         
         let contactsController = ContactsFactory.make(delegate: self)
-        contactsController.title = "Contacts"
+        contactsController.tabBarController?.navigationItem.title = "Contacts"
         
         let settingsController = SettingsFactory.make(delegate: self)
-        settingsController.title = "Settings"
+        settingsController.tabBarController?.navigationItem.title = "Settings"
         
         let tabBarAppearence = UITabBarAppearance()
         tabBarAppearence.backgroundColor = .white
@@ -25,7 +25,7 @@ class CustomTabBarController: UITabBarController {
     func setupItems() {
           guard var items = self.tabBar.items else {return}
         let images = [Constants.Images.messages,Constants.Images.contacts, Constants.Images.settings]
-
+        
           for x in 0...2 {
             items[x].image = UIImage(named: images[x])?.withRenderingMode(.automatic)
           }
@@ -35,6 +35,11 @@ class CustomTabBarController: UITabBarController {
 extension CustomTabBarController: ContactsDelegate {
     func continueFlow() {
         //
+    }
+    
+    func addPressed(){
+        let editController = AddContactFactory.make(delegate: self)
+        navigationController?.pushViewController(editController, animated: true)
     }
 }
 
@@ -57,4 +62,8 @@ extension CustomTabBarController: EditProfileDelegate {
     func confirmPressed() {
         navigationController?.popViewController(animated: true)
     }
+}
+
+extension CustomTabBarController: AddContactDelegate {
+    
 }

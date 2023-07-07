@@ -39,6 +39,12 @@
 		0F71A9D92A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DA2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DB2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
+		0FC393FE2A585E5200E0FAE4 /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC393FD2A585E5200E0FAE4 /* ContactsCell.swift */; };
+		0FC394042A587D8B00E0FAE4 /* AddContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394032A587D8A00E0FAE4 /* AddContactController.swift */; };
+		0FC3940C2A587DC800E0FAE4 /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3940B2A587DC800E0FAE4 /* AddContactInteractor.swift */; };
+		0FC394112A587DD200E0FAE4 /* AddContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394102A587DD200E0FAE4 /* AddContactPresenter.swift */; };
+		0FC394162A587E1500E0FAE4 /* AddContactCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */; };
+		0FC3941B2A587E2200E0FAE4 /* AddContactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */; };
 		0FF711312A53025000132FC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711302A53025000132FC8 /* ViewController.swift */; };
 		0FF7113E2A53032F00132FC8 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7113D2A53032F00132FC8 /* LoginInteractor.swift */; };
 		0FF711432A53093200132FC8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711422A53093200132FC8 /* LoginPresenter.swift */; };
@@ -114,6 +120,12 @@
 		0F71A9C72A523DC6000FBE3E /* WhatsChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsChatUITests.swift; sourceTree = "<group>"; };
 		0F71A9C92A523DC6000FBE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0FC393FD2A585E5200E0FAE4 /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
+		0FC394032A587D8A00E0FAE4 /* AddContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactController.swift; sourceTree = "<group>"; };
+		0FC3940B2A587DC800E0FAE4 /* AddContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactInteractor.swift; sourceTree = "<group>"; };
+		0FC394102A587DD200E0FAE4 /* AddContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactPresenter.swift; sourceTree = "<group>"; };
+		0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCoordinator.swift; sourceTree = "<group>"; };
+		0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFactory.swift; sourceTree = "<group>"; };
 		0FF711302A53025000132FC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0FF7113D2A53032F00132FC8 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		0FF711422A53093200132FC8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
@@ -170,11 +182,13 @@
 		0F1468972A54565E0012E3A6 /* ContactsViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0FC394022A587D6E00E0FAE4 /* AddContactViewController */,
 				0F1468922A54564D0012E3A6 /* ContactsController.swift */,
 				0F14689B2A54568C0012E3A6 /* ContactsInteractor.swift */,
 				0F1468A02A5456980012E3A6 /* ContactsPresenter.swift */,
 				0F1468A52A5456A90012E3A6 /* ContactsCoordinator.swift */,
 				0F1468AA2A5456B70012E3A6 /* ContactsFactory.swift */,
+				0FC393FD2A585E5200E0FAE4 /* ContactsCell.swift */,
 			);
 			path = ContactsViewController;
 			sourceTree = "<group>";
@@ -296,6 +310,18 @@
 				0F71A9C92A523DC6000FBE3E /* Info.plist */,
 			);
 			path = WhatsChatUITests;
+			sourceTree = "<group>";
+		};
+		0FC394022A587D6E00E0FAE4 /* AddContactViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0FC394032A587D8A00E0FAE4 /* AddContactController.swift */,
+				0FC3940B2A587DC800E0FAE4 /* AddContactInteractor.swift */,
+				0FC394102A587DD200E0FAE4 /* AddContactPresenter.swift */,
+				0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */,
+				0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */,
+			);
+			path = AddContactViewController;
 			sourceTree = "<group>";
 		};
 		0FF711392A53027D00132FC8 /* Login View Controller */ = {
@@ -590,13 +616,16 @@
 				0FF711962A53322300132FC8 /* RegisterInteractor.swift in Sources */,
 				0FF7118A2A5331B500132FC8 /* RegisterController.swift in Sources */,
 				0F58CC8D2A56FDC3007A22A6 /* EditProfilePresenter.swift in Sources */,
+				0FC3941B2A587E2200E0FAE4 /* AddContactFactory.swift in Sources */,
 				0FF711A52A53349700132FC8 /* RegisterFactory.swift in Sources */,
 				0FF711B22A533D4E00132FC8 /* DismissKeyboard.swift in Sources */,
 				0F1468CB2A54574C0012E3A6 /* SettingsController.swift in Sources */,
 				0F58CC922A56FDD0007A22A6 /* EditProfileCoordinator.swift in Sources */,
+				0FC394162A587E1500E0FAE4 /* AddContactCoordinator.swift in Sources */,
 				0F14689C2A54568C0012E3A6 /* ContactsInteractor.swift in Sources */,
 				0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */,
 				0F1468A12A5456980012E3A6 /* ContactsPresenter.swift in Sources */,
+				0FC3940C2A587DC800E0FAE4 /* AddContactInteractor.swift in Sources */,
 				0F1468BB2A5457010012E3A6 /* MessagesPresenter.swift in Sources */,
 				0F1468932A54564D0012E3A6 /* ContactsController.swift in Sources */,
 				0F1468C52A54571B0012E3A6 /* MessagesFactory.swift in Sources */,
@@ -609,6 +638,7 @@
 				0F1468DD2A54576F0012E3A6 /* SettingsCoordinator.swift in Sources */,
 				0FF711772A53264600132FC8 /* Hexadecimals.swift in Sources */,
 				0F71A9AD2A523DB3000FBE3E /* WhatsChat.xcdatamodeld in Sources */,
+				0FC394042A587D8B00E0FAE4 /* AddContactController.swift in Sources */,
 				0F1469022A545D420012E3A6 /* CustomTabBarController.swift in Sources */,
 				0FF711502A53149000132FC8 /* LoginFactory.swift in Sources */,
 				0F1468AB2A5456B70012E3A6 /* ContactsFactory.swift in Sources */,
@@ -618,7 +648,9 @@
 				0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */,
 				0F1468A62A5456A90012E3A6 /* ContactsCoordinator.swift in Sources */,
 				0F58CC7C2A56FD89007A22A6 /* EditProfileController.swift in Sources */,
+				0FC393FE2A585E5200E0FAE4 /* ContactsCell.swift in Sources */,
 				0F1468D82A5457640012E3A6 /* SettingsPresenter.swift in Sources */,
+				0FC394112A587DD200E0FAE4 /* AddContactPresenter.swift in Sources */,
 				0F58CC972A56FDE3007A22A6 /* EditProfileFactory.swift in Sources */,
 				0FF711A02A5332D900132FC8 /* RegisterCoordinator.swift in Sources */,
 				0FF7117F2A532E1100132FC8 /* Spaces.swift in Sources */,

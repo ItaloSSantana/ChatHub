@@ -2,6 +2,7 @@ import Foundation
 
 protocol ContactsPresenting: AnyObject {
     func displayScreen()
+    func addPressed()
 }
 
 final class ContactsPresenter: ContactsPresenting {
@@ -14,5 +15,8 @@ final class ContactsPresenter: ContactsPresenting {
     
     func displayScreen() {
         //
+    }
+    func addPressed() {
+        coordinator.addPressed()
     }
 }

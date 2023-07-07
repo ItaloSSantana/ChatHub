@@ -94,7 +94,16 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
       
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "Settings"
+        navigationController?.isNavigationBarHidden = false
+        navigationItem.setHidesBackButton(true, animated: true)
+        self.tabBarController?.navigationItem.hidesBackButton = true
         interactor.loadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    
     }
     
     override func viewDidLoad() {
@@ -115,7 +124,7 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
     
     override func setupConstraints() {
         cardView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Space.none.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Space.none.rawValue)
             $0.leading.trailing.equalToSuperview().offset(Space.none.rawValue)
             $0.height.equalTo(225)
         }

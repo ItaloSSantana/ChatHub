@@ -2,6 +2,7 @@ import Foundation
 
 protocol ContactsInteracting: AnyObject {
     func loadData()
+    func addPressed()
 }
 
 final class ContactsInteractor: ContactsInteracting {
@@ -13,6 +14,10 @@ final class ContactsInteractor: ContactsInteracting {
     
     func loadData() {
         //
+    }
+    
+    func addPressed() {
+        presenter.addPressed()
     }
     
 }
