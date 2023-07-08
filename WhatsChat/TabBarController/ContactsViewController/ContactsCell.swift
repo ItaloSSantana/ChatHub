@@ -76,4 +76,14 @@ class ContactsCell: UITableViewCell {
             $0.trailing.equalToSuperview().offset(-Space.base03.rawValue)
         }
     }
+    
+    func setupCell(contact: Dictionary<String, Any>) {
+        userDisplayName.text = contact["name"] as? String
+        userDisplayEmail.text = contact["email"] as? String
+        userDisplayBio.text = contact["bio"] as? String
+    }
+    
+    func setupImage(image: UIImage){
+        userImage.image = image
+    } 
 }

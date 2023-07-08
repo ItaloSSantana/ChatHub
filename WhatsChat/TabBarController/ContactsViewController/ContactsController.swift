@@ -2,6 +2,8 @@ import UIKit
 
 protocol ContactsDisplaying: AnyObject {
     func doSomething()
+    func getContacts(contacts: [Dictionary<String, Any>])
+    func getContactImage(image: UIImage)
 }
 
 final class ContactsController: ViewController<ContactsInteracting,UIView> {
@@ -28,11 +30,19 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
         tableView.register(ContactsCell.self, forCellReuseIdentifier: ContactsCell.identifier)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        tableView.delegate = self
+        tableView.dataSource = self
         return tableView
     }()
     
+    
+    private var contactList: [Dictionary<String, Any>] = []
+    private var contactImage: UIImage?
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        interactor.loadData()
         tabBarController?.navigationItem.title = "Contacts"
         navigationController?.isNavigationBarHidden = false
         navigationItem.setHidesBackButton(true, animated: true)
@@ -40,11 +50,14 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "test", style: .done, target: self, action: #selector(addTapped))
         self.tabBarController?.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(self.addTapped))
     }
+   
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        contactsTableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contactsTableView.delegate = self
-        contactsTableView.dataSource = self
         view.backgroundColor = .white
     }
     
@@ -82,6 +95,14 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
 }
 
 extension ContactsController: ContactsDisplaying {
+    func getContactImage(image: UIImage) {
+        contactImage = image
+    }
+    
+    func getContacts(contacts: [Dictionary<String, Any>]) {
+        contactList = contacts
+    }
+    
     func doSomething() {
         //
     }
@@ -95,15 +116,22 @@ extension ContactsController: UISearchBarDelegate {
 
 extension ContactsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return contactList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ContactsCell.identifier, for: indexPath) as? ContactsCell {
-                   return cell
-               }
-               return UITableViewCell()
+            let contactData = contactList[indexPath.row]
+            print(contactData)
+            cell.setupCell(contact: contactData)
+            if let image = contactData["imageUrl"] as? String {
+                interactor.loadContactImage(image: image)
+                if let safeImage = contactImage {
+                    cell.setupImage(image: safeImage)
+                }
+            }
+            return cell
+        }
+        return UITableViewCell()
     }
-    
-    
 }
