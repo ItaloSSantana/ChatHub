@@ -6,7 +6,6 @@ import FirebaseAuth
 protocol ContactsInteracting: AnyObject {
     func loadData()
     func addPressed()
-    func loadContactImage(image: String?)
 }
 
 final class ContactsInteractor: ContactsInteracting {
@@ -16,7 +15,7 @@ final class ContactsInteractor: ContactsInteracting {
     private var firestore: Firestore?
     private var storage: Storage?
     private var currentUserID = ""
-    private var contactList: [Dictionary<String, Any>] = []
+    private var contactList: [UserViewModel] = []
     
     init(presenter: ContactsPresenting) {
         self.presenter = presenter
@@ -30,6 +29,8 @@ final class ContactsInteractor: ContactsInteracting {
     }
     
     func loadData() {
+        contactList.removeAll()
+        presenter.isLoadEnabled(verify: true)
         firestore?.collection("users")
             .document(currentUserID)
             .collection("contacts")
@@ -39,22 +40,22 @@ final class ContactsInteractor: ContactsInteracting {
                     return}
                 snapshot.documents.forEach { (document) in
                     let contactData = document.data()
-                    self.contactList.append(contactData)
-                    self.presenter.displayScreen(contacts: self.contactList)
+                    guard let safeName = contactData["name"] as? String,
+                          let safeEmail = contactData["email"] as? String,
+                          let safeBio = contactData["bio"] as? String,
+                          let safeUrl = contactData["imageUrl"] as? String,
+                          let safeId = contactData["id"] as? String,
+                          let storageRef = self.storage?.reference(forURL: safeUrl) else {return}
+                    storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) -> Void in
+                        guard let safeData = data else {return}
+                        if let safeImage = UIImage(data: safeData) {
+                            self.contactList.append(UserViewModel(name: safeName, email: safeEmail, image: safeImage, bio: safeBio, id: safeId))
+                        }
+                        self.presenter.displayScreen(contacts: self.contactList)
+                        self.presenter.isLoadEnabled(verify: false)
+                    }
                 }
             })
-    }
-    
-    func loadContactImage(image: String?) {
-        guard let imageUrl = image,
-              let storageRef = self.storage?.reference(forURL: imageUrl) else {return}
-        storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) -> Void in
-            guard let safeData = data else {return}
-            if let image = UIImage(data: safeData) {
-                print(image)
-                self.presenter.setContactImage(image: image)
-            }
-        }
     }
     
     func addPressed() {
@@ -62,3 +63,20 @@ final class ContactsInteractor: ContactsInteracting {
     }
     
 }
+
+class UserViewModel {
+    let name: String
+    let email: String
+    let image: UIImage?
+    let bio: String?
+    let id: String
+    
+    init(name: String, email: String,  image: UIImage, bio: String, id: String) {
+        self.name = name
+        self.email = email
+        self.image = image
+        self.bio = bio
+        self.id = id
+    }
+}
+

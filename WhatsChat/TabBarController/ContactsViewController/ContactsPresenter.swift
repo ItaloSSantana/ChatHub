@@ -1,9 +1,10 @@
 import UIKit
 
 protocol ContactsPresenting: AnyObject {
-    func displayScreen(contacts: [Dictionary<String, Any>])
+    func displayScreen(contacts: [UserViewModel])
     func setContactImage(image: UIImage)
     func addPressed()
+    func isLoadEnabled(verify: Bool)
 }
 
 final class ContactsPresenter: ContactsPresenting {
@@ -14,7 +15,7 @@ final class ContactsPresenter: ContactsPresenting {
         self.coordinator = coordinator
     }
     
-    func displayScreen(contacts: [Dictionary<String, Any>]) {
+    func displayScreen(contacts: [UserViewModel]) {
         viewController?.getContacts(contacts: contacts)
     }
     func addPressed() {
@@ -23,6 +24,10 @@ final class ContactsPresenter: ContactsPresenting {
     
     func setContactImage(image: UIImage) {
         viewController?.getContactImage(image: image)
+    }
+    
+    func isLoadEnabled(verify: Bool) {
+        viewController?.isLoadEnabled(verify: verify)
     }
     
 }

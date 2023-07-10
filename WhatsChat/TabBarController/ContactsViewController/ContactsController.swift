@@ -2,8 +2,9 @@ import UIKit
 
 protocol ContactsDisplaying: AnyObject {
     func doSomething()
-    func getContacts(contacts: [Dictionary<String, Any>])
+    func getContacts(contacts: [UserViewModel])
     func getContactImage(image: UIImage)
+    func isLoadEnabled(verify: Bool)
 }
 
 final class ContactsController: ViewController<ContactsInteracting,UIView> {
@@ -35,14 +36,27 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
         return tableView
     }()
     
+    private lazy var prepareView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
     
-    private var contactList: [Dictionary<String, Any>] = []
+    private lazy var prepareLoad: UILabel = {
+       let label = UILabel()
+        label.text = "Loading..."
+        return label
+    }()
+    
+    private var contactList: [UserViewModel] = []
     private var contactImage: UIImage?
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor.loadData()
+        contactList.removeAll()
+        self.contactsTableView.reloadData()
+        self.interactor.loadData()
         tabBarController?.navigationItem.title = "Contacts"
         navigationController?.isNavigationBarHidden = false
         navigationItem.setHidesBackButton(true, animated: true)
@@ -53,7 +67,7 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        contactsTableView.reloadData()
+        print(contactList)
     }
     
     override func viewDidLoad() {
@@ -69,11 +83,20 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
     override func buildViewHierarchy() {
         view.addSubview(searchBar)
         view.addSubview(contactsTableView)
+        view.addSubview(prepareView)
+        prepareView.addSubview(prepareLoad)
     }
     
-    
-    
     override func setupConstraints() {
+        prepareView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        prepareLoad.snp.makeConstraints {
+            $0.centerY.equalTo(prepareView)
+            $0.centerX.equalTo(prepareView)
+        }
+        
         searchBar.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Space.base00.rawValue)
             $0.leading.trailing.equalToSuperview().inset(Space.base01.rawValue)
@@ -84,13 +107,14 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
             $0.leading.trailing.equalToSuperview().inset(Space.none.rawValue)
             $0.bottom.equalToSuperview()
         }
-
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
         print("pressed")
         interactor.addPressed()
     }
+    
+    
     
 }
 
@@ -99,7 +123,16 @@ extension ContactsController: ContactsDisplaying {
         contactImage = image
     }
     
-    func getContacts(contacts: [Dictionary<String, Any>]) {
+    func isLoadEnabled(verify: Bool) {
+        if verify {
+            print("loading...")
+        } else {
+           prepareView.isHidden = true
+            contactsTableView.reloadData()
+        }
+    }
+    
+    func getContacts(contacts: [UserViewModel]) {
         contactList = contacts
     }
     
@@ -124,12 +157,7 @@ extension ContactsController: UITableViewDelegate, UITableViewDataSource {
             let contactData = contactList[indexPath.row]
             print(contactData)
             cell.setupCell(contact: contactData)
-            if let image = contactData["imageUrl"] as? String {
-                interactor.loadContactImage(image: image)
-                if let safeImage = contactImage {
-                    cell.setupImage(image: safeImage)
-                }
-            }
+            
             return cell
         }
         return UITableViewCell()

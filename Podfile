@@ -10,6 +10,7 @@ target 'WhatsChat' do
 	pod 'FirebaseFirestore'
 	pod 'FirebaseStorage'
   pod 'SnapKit'
+pod 'Kingfisher'
   target 'WhatsChatTests' do
     inherit! :search_paths
     # Pods for testing

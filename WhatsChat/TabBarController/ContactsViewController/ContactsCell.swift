@@ -77,13 +77,10 @@ class ContactsCell: UITableViewCell {
         }
     }
     
-    func setupCell(contact: Dictionary<String, Any>) {
-        userDisplayName.text = contact["name"] as? String
-        userDisplayEmail.text = contact["email"] as? String
-        userDisplayBio.text = contact["bio"] as? String
+    func setupCell(contact: UserViewModel) {
+        userDisplayName.text = contact.name
+        userDisplayEmail.text = contact.email
+        userDisplayBio.text = contact.bio
+        userImage.image = contact.image
     }
-    
-    func setupImage(image: UIImage){
-        userImage.image = image
-    } 
 }
