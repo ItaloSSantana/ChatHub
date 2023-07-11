@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F0D70362A5DB40C008AA633 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D70352A5DB40C008AA633 /* ChatController.swift */; };
+		0F0D703E2A5DB41C008AA633 /* ChatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D703D2A5DB41C008AA633 /* ChatInteractor.swift */; };
+		0F0D70432A5DB42A008AA633 /* ChatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D70422A5DB42A008AA633 /* ChatPresenter.swift */; };
+		0F0D70482A5DB439008AA633 /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D70472A5DB439008AA633 /* ChatCoordinator.swift */; };
+		0F0D704D2A5DB444008AA633 /* ChatFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D704C2A5DB444008AA633 /* ChatFactory.swift */; };
 		0F1468932A54564D0012E3A6 /* ContactsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468922A54564D0012E3A6 /* ContactsController.swift */; };
 		0F14689C2A54568C0012E3A6 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F14689B2A54568C0012E3A6 /* ContactsInteractor.swift */; };
 		0F1468A12A5456980012E3A6 /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1468A02A5456980012E3A6 /* ContactsPresenter.swift */; };
@@ -84,6 +89,11 @@
 
 /* Begin PBXFileReference section */
 		00CEF6495F3EF72D94C88DE5 /* Pods_WhatsChatTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsChatTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F0D70352A5DB40C008AA633 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		0F0D703D2A5DB41C008AA633 /* ChatInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInteractor.swift; sourceTree = "<group>"; };
+		0F0D70422A5DB42A008AA633 /* ChatPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPresenter.swift; sourceTree = "<group>"; };
+		0F0D70472A5DB439008AA633 /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
+		0F0D704C2A5DB444008AA633 /* ChatFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFactory.swift; sourceTree = "<group>"; };
 		0F1468922A54564D0012E3A6 /* ContactsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsController.swift; sourceTree = "<group>"; };
 		0F14689B2A54568C0012E3A6 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
 		0F1468A02A5456980012E3A6 /* ContactsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPresenter.swift; sourceTree = "<group>"; };
@@ -179,6 +189,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F0D70342A5DB274008AA633 /* ChatViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D70352A5DB40C008AA633 /* ChatController.swift */,
+				0F0D703D2A5DB41C008AA633 /* ChatInteractor.swift */,
+				0F0D70422A5DB42A008AA633 /* ChatPresenter.swift */,
+				0F0D70472A5DB439008AA633 /* ChatCoordinator.swift */,
+				0F0D704C2A5DB444008AA633 /* ChatFactory.swift */,
+			);
+			path = ChatViewController;
+			sourceTree = "<group>";
+		};
 		0F1468972A54565E0012E3A6 /* ContactsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +245,7 @@
 				0F1469092A545F470012E3A6 /* CustomTabBarController */,
 				0F1468972A54565E0012E3A6 /* ContactsViewController */,
 				0F1468AF2A5456CE0012E3A6 /* MessagesViewController */,
+				0F0D70342A5DB274008AA633 /* ChatViewController */,
 				0F1468C92A5457360012E3A6 /* SettingsViewController */,
 			);
 			path = TabBarController;
@@ -617,6 +640,7 @@
 				0FF7118A2A5331B500132FC8 /* RegisterController.swift in Sources */,
 				0F58CC8D2A56FDC3007A22A6 /* EditProfilePresenter.swift in Sources */,
 				0FC3941B2A587E2200E0FAE4 /* AddContactFactory.swift in Sources */,
+				0F0D70482A5DB439008AA633 /* ChatCoordinator.swift in Sources */,
 				0FF711A52A53349700132FC8 /* RegisterFactory.swift in Sources */,
 				0FF711B22A533D4E00132FC8 /* DismissKeyboard.swift in Sources */,
 				0F1468CB2A54574C0012E3A6 /* SettingsController.swift in Sources */,
@@ -624,6 +648,7 @@
 				0FC394162A587E1500E0FAE4 /* AddContactCoordinator.swift in Sources */,
 				0F14689C2A54568C0012E3A6 /* ContactsInteractor.swift in Sources */,
 				0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */,
+				0F0D70432A5DB42A008AA633 /* ChatPresenter.swift in Sources */,
 				0F1468A12A5456980012E3A6 /* ContactsPresenter.swift in Sources */,
 				0FC3940C2A587DC800E0FAE4 /* AddContactInteractor.swift in Sources */,
 				0F1468BB2A5457010012E3A6 /* MessagesPresenter.swift in Sources */,
@@ -649,14 +674,17 @@
 				0F1468A62A5456A90012E3A6 /* ContactsCoordinator.swift in Sources */,
 				0F58CC7C2A56FD89007A22A6 /* EditProfileController.swift in Sources */,
 				0FC393FE2A585E5200E0FAE4 /* ContactsCell.swift in Sources */,
+				0F0D704D2A5DB444008AA633 /* ChatFactory.swift in Sources */,
 				0F1468D82A5457640012E3A6 /* SettingsPresenter.swift in Sources */,
 				0FC394112A587DD200E0FAE4 /* AddContactPresenter.swift in Sources */,
 				0F58CC972A56FDE3007A22A6 /* EditProfileFactory.swift in Sources */,
 				0FF711A02A5332D900132FC8 /* RegisterCoordinator.swift in Sources */,
+				0F0D703E2A5DB41C008AA633 /* ChatInteractor.swift in Sources */,
 				0FF7117F2A532E1100132FC8 /* Spaces.swift in Sources */,
 				0F1468E22A54577E0012E3A6 /* SettingsFactory.swift in Sources */,
 				0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */,
 				0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */,
+				0F0D70362A5DB40C008AA633 /* ChatController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

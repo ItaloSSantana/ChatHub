@@ -3,12 +3,14 @@ import UIKit
 protocol ContactsDelegate: AnyObject {
     func continueFlow()
     func addPressed()
+    func contactChat(sender: UserViewModel)
 }
 
 protocol ContactsCoordinating: AnyObject {
     var viewController: UIViewController? {get set}
     func continueFlow()
     func addPressed()
+    func contactChat(sender: UserViewModel)
 }
 
 class ContactsCoordinator: ContactsCoordinating {
@@ -25,4 +27,9 @@ class ContactsCoordinator: ContactsCoordinating {
     func addPressed() {
         delegate.addPressed()
     }
+    
+    func contactChat(sender: UserViewModel) {
+        delegate.contactChat(sender: sender)
+    }
+    
 }

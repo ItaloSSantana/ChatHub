@@ -31,8 +31,6 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
         tableView.register(ContactsCell.self, forCellReuseIdentifier: ContactsCell.identifier)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        tableView.delegate = self
-        tableView.dataSource = self
         return tableView
     }()
     
@@ -49,6 +47,7 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
     }()
     
     private var contactList: [UserViewModel] = []
+    private var filterList: [UserViewModel] = []
     private var contactImage: UIImage?
     
     
@@ -72,6 +71,8 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        contactsTableView.delegate = self
+        contactsTableView.dataSource = self
         view.backgroundColor = .white
     }
     
@@ -110,12 +111,12 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
-        print("pressed")
         interactor.addPressed()
     }
     
-    
-    
+    override func configureViews() {
+        self.hideKeyboardWhenTappedAround()
+    }
 }
 
 extension ContactsController: ContactsDisplaying {
@@ -143,7 +144,19 @@ extension ContactsController: ContactsDisplaying {
 
 extension ContactsController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //
+        if searchBar.text == "" {
+            interactor.loadData()
+            contactsTableView.reloadData()
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let resultText = searchBar.text {
+            if resultText != "" {
+                interactor.searchPressed(text: resultText)
+                contactsTableView.reloadData()
+            }
+        }
     }
 }
 
@@ -155,11 +168,18 @@ extension ContactsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: ContactsCell.identifier, for: indexPath) as? ContactsCell {
             let contactData = contactList[indexPath.row]
-            print(contactData)
             cell.setupCell(contact: contactData)
             
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
+        let contact = contactList[indexPath.row]
+        interactor.contactChat(sender: contact)
+       // self.contactsTableView.deselectRow(at: indexPath, animated: true)
+        
     }
 }

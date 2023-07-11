@@ -5,6 +5,7 @@ protocol ContactsPresenting: AnyObject {
     func setContactImage(image: UIImage)
     func addPressed()
     func isLoadEnabled(verify: Bool)
+    func contactChat(sender: UserViewModel)
 }
 
 final class ContactsPresenter: ContactsPresenting {
@@ -28,6 +29,10 @@ final class ContactsPresenter: ContactsPresenting {
     
     func isLoadEnabled(verify: Bool) {
         viewController?.isLoadEnabled(verify: verify)
+    }
+    
+    func contactChat(sender: UserViewModel) {
+        coordinator.contactChat(sender: sender)
     }
     
 }

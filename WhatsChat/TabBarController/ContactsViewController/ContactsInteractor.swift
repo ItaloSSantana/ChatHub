@@ -6,6 +6,8 @@ import FirebaseAuth
 protocol ContactsInteracting: AnyObject {
     func loadData()
     func addPressed()
+    func searchPressed(text: String)
+    func contactChat(sender: UserViewModel)
 }
 
 final class ContactsInteractor: ContactsInteracting {
@@ -56,6 +58,21 @@ final class ContactsInteractor: ContactsInteracting {
                     }
                 }
             })
+    }
+    
+    func searchPressed(text: String) {
+        let filterList = contactList
+        self.contactList.removeAll()
+        filterList.forEach { (item) in
+            if item.name.lowercased().contains(text.lowercased()) {
+                self.contactList.append(item)
+            }
+        }
+        self.presenter.displayScreen(contacts: self.contactList)
+    }
+    
+    func contactChat(sender: UserViewModel) {
+        presenter.contactChat(sender: sender)
     }
     
     func addPressed() {

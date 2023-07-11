@@ -28,7 +28,7 @@ final class RegisterInteractor: RegisterInteracting {
             guard let userID = resultData?.user.uid else {return}
             self.firestore?.collection("users")
                 .document(userID)
-                .setData(["name" : safeName, "email": safeEmail, "id": userID, "bio": ""])
+                .setData(["name" : safeName, "email": safeEmail, "id": userID, "bio": "", "imageUrl": "gs://whatschat-bd803.appspot.com/images/profile/imagem-perfil.png"] )
             
             self.presenter.displayScreen()
         })

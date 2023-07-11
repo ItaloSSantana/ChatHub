@@ -120,6 +120,11 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
                                  password: passwordTextField.text,
                                  rePassword: rePasswordTextField.text)
     }
+    
+    override func configureViews() {
+        self.hideKeyboardWhenTappedAround()
+    }
+    
 }
 
 extension RegisterController: RegisterDisplaying {
