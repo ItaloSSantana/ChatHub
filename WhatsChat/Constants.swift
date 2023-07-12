@@ -12,5 +12,7 @@ struct Constants {
         static let contacts = "contatos"
         static let messages = "conversas"
         static let profileImage = "profileImage"
+        static let documentIcon = "document"
+        static let background = "bg"
     }
 }

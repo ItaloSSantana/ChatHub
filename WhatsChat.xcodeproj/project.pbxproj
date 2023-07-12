@@ -33,6 +33,8 @@
 		0F58CC8D2A56FDC3007A22A6 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F58CC8C2A56FDC3007A22A6 /* EditProfilePresenter.swift */; };
 		0F58CC922A56FDD0007A22A6 /* EditProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F58CC912A56FDD0007A22A6 /* EditProfileCoordinator.swift */; };
 		0F58CC972A56FDE3007A22A6 /* EditProfileFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F58CC962A56FDE3007A22A6 /* EditProfileFactory.swift */; };
+		0F591A302A5F017B00235A55 /* RightChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F591A2F2A5F017B00235A55 /* RightChatCell.swift */; };
+		0F591A352A5F0DD400235A55 /* LeftChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F591A342A5F0DD400235A55 /* LeftChatCell.swift */; };
 		0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */; };
 		0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */; };
 		0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71A9A62A523DB3000FBE3E /* LoginController.swift */; };
@@ -115,6 +117,8 @@
 		0F58CC8C2A56FDC3007A22A6 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		0F58CC912A56FDD0007A22A6 /* EditProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileCoordinator.swift; sourceTree = "<group>"; };
 		0F58CC962A56FDE3007A22A6 /* EditProfileFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileFactory.swift; sourceTree = "<group>"; };
+		0F591A2F2A5F017B00235A55 /* RightChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightChatCell.swift; sourceTree = "<group>"; };
+		0F591A342A5F0DD400235A55 /* LeftChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftChatCell.swift; sourceTree = "<group>"; };
 		0F71A99F2A523DB3000FBE3E /* WhatsChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				0F0D70422A5DB42A008AA633 /* ChatPresenter.swift */,
 				0F0D70472A5DB439008AA633 /* ChatCoordinator.swift */,
 				0F0D704C2A5DB444008AA633 /* ChatFactory.swift */,
+				0F591A2F2A5F017B00235A55 /* RightChatCell.swift */,
+				0F591A342A5F0DD400235A55 /* LeftChatCell.swift */,
 			);
 			path = ChatViewController;
 			sourceTree = "<group>";
@@ -670,6 +676,7 @@
 				0F58CC882A56FDB5007A22A6 /* EditProfileInteractor.swift in Sources */,
 				0FF7119B2A53326200132FC8 /* RegisterPresenter.swift in Sources */,
 				0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */,
+				0F591A352A5F0DD400235A55 /* LeftChatCell.swift in Sources */,
 				0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */,
 				0F1468A62A5456A90012E3A6 /* ContactsCoordinator.swift in Sources */,
 				0F58CC7C2A56FD89007A22A6 /* EditProfileController.swift in Sources */,
@@ -683,6 +690,7 @@
 				0FF7117F2A532E1100132FC8 /* Spaces.swift in Sources */,
 				0F1468E22A54577E0012E3A6 /* SettingsFactory.swift in Sources */,
 				0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */,
+				0F591A302A5F017B00235A55 /* RightChatCell.swift in Sources */,
 				0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */,
 				0F0D70362A5DB40C008AA633 /* ChatController.swift in Sources */,
 			);
