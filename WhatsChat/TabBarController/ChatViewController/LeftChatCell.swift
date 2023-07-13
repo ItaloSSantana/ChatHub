@@ -7,7 +7,7 @@ class LeftChatCell: UITableViewCell {
     let view = UIView()
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.thirdColor)
         view.clipsToBounds = true
-        view.layer.cornerRadius = 10
+        view.layer.cornerRadius = 15
         return view
     }()
     
@@ -37,9 +37,9 @@ class LeftChatCell: UITableViewCell {
     
     private func setupConstraints() {
         cellView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Space.base01.rawValue)
-            $0.bottom.equalToSuperview().offset(-Space.base01.rawValue)
-            $0.leading.equalToSuperview().offset(Space.base01.rawValue)
+            $0.top.equalToSuperview().offset(Space.base02.rawValue)
+            $0.bottom.equalToSuperview().offset(-Space.base02.rawValue)
+            $0.leading.equalToSuperview().offset(Space.base02.rawValue)
             $0.trailing.equalTo(self.snp.trailing).offset(-Space.base15.rawValue)
         }
         

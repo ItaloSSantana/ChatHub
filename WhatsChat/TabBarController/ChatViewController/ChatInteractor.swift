@@ -40,6 +40,7 @@ final class ChatInteractor: ChatInteracting {
                     "date" : FieldValue.serverTimestamp()
                 ]
                 saveMessage(currentID: currentUserID, contactID: safeContact.id, message: msg)
+                saveMessage(currentID: safeContact.id, contactID: currentUserID, message: msg)
                 self.presenter.sendMessage()
             }
         }
@@ -72,7 +73,7 @@ final class ChatInteractor: ChatInteracting {
                         } else {
                             sender = false
                         }
-                        self.messageList.append(MessageViewModel(userID: safeCurrentID, text: safeText, isSenderCurrentUser: true))
+                        self.messageList.append(MessageViewModel(userID: safeCurrentID, text: safeText, isSenderCurrentUser: sender))
                     }
                     
                     self.presenter.loadMessages(messages: self.messageList)

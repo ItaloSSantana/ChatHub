@@ -106,15 +106,12 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
             $0.leading.equalTo(addDocumentButton.snp.trailing).offset(Space.base01.rawValue)
             $0.trailing.equalTo(sendMessageButton.snp.leading).offset(-Space.base01.rawValue)
         }
-        
     }
     
     @objc private func sendPressed() {
         guard let message = textField.text else {return}
         interactor.sendMessage(message: message)
     }
-    
-   
 }
 
 extension ChatController: ChatDisplaying {

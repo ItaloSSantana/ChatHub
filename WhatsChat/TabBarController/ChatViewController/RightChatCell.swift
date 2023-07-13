@@ -35,10 +35,10 @@ class RightChatCell: UITableViewCell {
     
     private func setupConstraints() {
         cellView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Space.base01.rawValue)
-            $0.bottom.equalToSuperview().offset(-Space.base01.rawValue)
+            $0.top.equalToSuperview().offset(Space.base02.rawValue)
+            $0.bottom.equalToSuperview().offset(-Space.base02.rawValue)
             $0.leading.equalToSuperview().offset(Space.base15.rawValue)
-            $0.trailing.equalTo(self.snp.trailing).offset(-Space.base01.rawValue)
+            $0.trailing.equalTo(self.snp.trailing).offset(-Space.base02.rawValue)
         }
         
         label.snp.makeConstraints {
