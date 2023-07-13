@@ -42,11 +42,10 @@ extension CustomTabBarController: ContactsDelegate {
         navigationController?.pushViewController(editController, animated: true)
     }
     
-    func contactChat(sender: UserViewModel) {
-        let chatController = ChatFactory.make(delegate: self)
-        navigationController?.show(chatController, sender: sender)
+    func contactChat(viewModel: UserViewModel) {
+        let chatController = ChatFactory.make(delegate: self, viewModel: viewModel)
+        navigationController?.pushViewController(chatController, animated: true)
     }
-    
 }
 
 extension CustomTabBarController: SettingsDelegate {

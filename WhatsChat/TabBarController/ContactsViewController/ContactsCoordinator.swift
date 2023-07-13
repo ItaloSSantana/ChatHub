@@ -3,7 +3,7 @@ import UIKit
 protocol ContactsDelegate: AnyObject {
     func continueFlow()
     func addPressed()
-    func contactChat(sender: UserViewModel)
+    func contactChat(viewModel: UserViewModel)
 }
 
 protocol ContactsCoordinating: AnyObject {
@@ -29,7 +29,7 @@ class ContactsCoordinator: ContactsCoordinating {
     }
     
     func contactChat(sender: UserViewModel) {
-        delegate.contactChat(sender: sender)
+        delegate.contactChat(viewModel: sender)
     }
     
 }

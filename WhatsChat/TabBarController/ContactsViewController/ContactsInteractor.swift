@@ -36,6 +36,7 @@ final class ContactsInteractor: ContactsInteracting {
         firestore?.collection("users")
             .document(currentUserID)
             .collection("contacts")
+            .order(by: "name", descending: true)
             .getDocuments(completion: { (resultSnapshot, error) in
                 guard let snapshot = resultSnapshot else {
                     print("cannot get user")

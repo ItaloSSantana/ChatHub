@@ -13,11 +13,13 @@ class RightChatCell: UITableViewCell {
     
     private lazy var label: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = .clear
         buildHierarchy()
     }
     
@@ -28,16 +30,20 @@ class RightChatCell: UITableViewCell {
     private func buildHierarchy() {
         self.addSubview(cellView)
         cellView.addSubview(label)
+        setupConstraints()
     }
     
     private func setupConstraints() {
         cellView.snp.makeConstraints {
-            $0.top.trailing.bottom.equalTo(self).inset(Space.none.rawValue)
-            $0.leading.equalTo(self.snp.leading).offset(Space.base15.rawValue)
+            $0.top.equalToSuperview().offset(Space.base01.rawValue)
+            $0.bottom.equalToSuperview().offset(-Space.base01.rawValue)
+            $0.leading.equalToSuperview().offset(Space.base15.rawValue)
+            $0.trailing.equalTo(self.snp.trailing).offset(-Space.base01.rawValue)
         }
         
         label.snp.makeConstraints {
-            $0.edges.equalTo(cellView).offset(Space.base02.rawValue)
+            $0.edges.equalTo(cellView).inset(Space.base02.rawValue)
+            $0.height.greaterThanOrEqualTo(Space.base04.rawValue)
         }
     }
     

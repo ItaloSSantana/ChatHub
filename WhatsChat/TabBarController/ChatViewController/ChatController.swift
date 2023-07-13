@@ -1,7 +1,9 @@
 import UIKit
 
 protocol ChatDisplaying: AnyObject {
-    func doSomething()
+    func sendMessage()
+    func loadMessages(messages: [MessageViewModel])
+    func removeListener()
 }
 
 final class ChatController: ViewController<ChatInteracting,UIView> {
@@ -13,7 +15,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
     
     private lazy var messageView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
         return view
     }()
     
@@ -28,9 +30,10 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         return textfield
     }()
     
-    private lazy var sendMessage: UIButton = {
+    private lazy var sendMessageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Send", for: .normal)
+        button.addTarget(self, action: #selector(sendPressed), for: .touchUpInside)
         return button
     }()
     
@@ -38,11 +41,18 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         let tableView = UITableView()
         tableView.backgroundView = UIImageView(image: UIImage(named: Constants.Images.background))
         tableView.register(LeftChatCell.self, forCellReuseIdentifier: LeftChatCell.identifier)
-       // tableView.register(RightChatCell.self, forCellReuseIdentifier: RightChatCell.identifier)
+        tableView.register(RightChatCell.self, forCellReuseIdentifier: RightChatCell.identifier)
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         return tableView
     }()
     
-    let messages = ["Olaaaa","tudo bem","to bem e vc","to bem tbm","que otimo cara","perfeito","maravilha","ufa",]
+    var messages: [MessageViewModel] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor.addListenerLoadMessage()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +61,17 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         view.backgroundColor = .white
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        interactor.removeListener()
+    }
+    
     override func buildViewHierarchy() {
         view.addSubview(messageView)
         view.addSubview(chatTableView)
         messageView.addSubview(addDocumentButton)
         messageView.addSubview(textField)
-        messageView.addSubview(sendMessage)
-        
+        messageView.addSubview(sendMessageButton)
     }
     
     override func setupConstraints() {
@@ -80,7 +94,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
             $0.width.equalTo(30)
         }
         
-        sendMessage.snp.makeConstraints {
+        sendMessageButton.snp.makeConstraints {
             $0.top.equalTo(messageView.snp.top).offset(Space.base01.rawValue)
             $0.trailing.equalTo(messageView.snp.trailing).offset(-Space.base02.rawValue)
             $0.height.equalTo(30)
@@ -90,15 +104,31 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         textField.snp.makeConstraints {
             $0.top.bottom.equalTo(messageView).inset(Space.base01.rawValue)
             $0.leading.equalTo(addDocumentButton.snp.trailing).offset(Space.base01.rawValue)
-            $0.trailing.equalTo(sendMessage.snp.leading).offset(-Space.base01.rawValue)
+            $0.trailing.equalTo(sendMessageButton.snp.leading).offset(-Space.base01.rawValue)
         }
         
     }
+    
+    @objc private func sendPressed() {
+        guard let message = textField.text else {return}
+        interactor.sendMessage(message: message)
+    }
+    
+   
 }
 
 extension ChatController: ChatDisplaying {
-    func doSomething() {
-        //
+    func loadMessages(messages: [MessageViewModel]) {
+        self.messages = messages
+        chatTableView.reloadData()
+    }
+    
+    func sendMessage() {
+        textField.text = ""
+    }
+    
+    func removeListener() {
+        print("exit")
     }
 }
 
@@ -108,19 +138,17 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       // let rightCell = tableView.dequeueReusableCell(withIdentifier: RightChatCell.identifier, for: indexPath) as! RightChatCell
-        let leftCell = tableView.dequeueReusableCell(withIdentifier: LeftChatCell.identifier, for: indexPath) as! LeftChatCell
+        guard let rightCell = tableView.dequeueReusableCell(withIdentifier: RightChatCell.identifier, for: indexPath) as? RightChatCell else {return UITableViewCell()}
+        guard let leftCell = tableView.dequeueReusableCell(withIdentifier: LeftChatCell.identifier, for: indexPath) as? LeftChatCell else {return UITableViewCell()}
         
         let message = messages[indexPath.row]
-        leftCell.setupCell(text: message)
-        return leftCell
-//        if indexPath.row % 2 == 0 {
-//            rightCell.setupCell(text: message)
-//            return rightCell
-//        } else {
-//            leftCell.setupCell(text: message)
-//            return leftCell
-//        }
-//
-        
-    }}
+        guard let text = message.text else {return UITableViewCell()}
+            if message.isSenderCurrentUser {
+                rightCell.setupCell(text: text)
+                return rightCell
+            } else {
+                leftCell.setupCell(text: text)
+                return leftCell
+            }
+        }
+    }

@@ -1,7 +1,9 @@
 import Foundation
 
 protocol ChatPresenting: AnyObject {
-    func displayScreen()
+    func sendMessage()
+    func loadMessages(messages: [MessageViewModel])
+    func removeListener()
 }
 
 final class ChatPresenter: ChatPresenting {
@@ -12,7 +14,16 @@ final class ChatPresenter: ChatPresenting {
         self.coordinator = coordinator
     }
     
-    func displayScreen() {
-        //
+    func sendMessage() {
+        viewController?.sendMessage()
+    }
+    
+    func loadMessages(messages: [MessageViewModel]) {
+        viewController?.loadMessages(messages: messages)
+    }
+    
+    func removeListener() {
+        viewController?.removeListener()
     }
 }
+
