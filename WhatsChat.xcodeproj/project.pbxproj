@@ -52,6 +52,8 @@
 		0FC394112A587DD200E0FAE4 /* AddContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394102A587DD200E0FAE4 /* AddContactPresenter.swift */; };
 		0FC394162A587E1500E0FAE4 /* AddContactCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */; };
 		0FC3941B2A587E2200E0FAE4 /* AddContactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */; };
+		0FF164822A61A083007C15EA /* RightImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF164812A61A083007C15EA /* RightImageCell.swift */; };
+		0FF164872A61A091007C15EA /* LeftImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF164862A61A091007C15EA /* LeftImageCell.swift */; };
 		0FF711312A53025000132FC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711302A53025000132FC8 /* ViewController.swift */; };
 		0FF7113E2A53032F00132FC8 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF7113D2A53032F00132FC8 /* LoginInteractor.swift */; };
 		0FF711432A53093200132FC8 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711422A53093200132FC8 /* LoginPresenter.swift */; };
@@ -140,6 +142,8 @@
 		0FC394102A587DD200E0FAE4 /* AddContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactPresenter.swift; sourceTree = "<group>"; };
 		0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCoordinator.swift; sourceTree = "<group>"; };
 		0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFactory.swift; sourceTree = "<group>"; };
+		0FF164812A61A083007C15EA /* RightImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightImageCell.swift; sourceTree = "<group>"; };
+		0FF164862A61A091007C15EA /* LeftImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftImageCell.swift; sourceTree = "<group>"; };
 		0FF711302A53025000132FC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0FF7113D2A53032F00132FC8 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 		0FF711422A53093200132FC8 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
@@ -201,8 +205,7 @@
 				0F0D70422A5DB42A008AA633 /* ChatPresenter.swift */,
 				0F0D70472A5DB439008AA633 /* ChatCoordinator.swift */,
 				0F0D704C2A5DB444008AA633 /* ChatFactory.swift */,
-				0F591A2F2A5F017B00235A55 /* RightChatCell.swift */,
-				0F591A342A5F0DD400235A55 /* LeftChatCell.swift */,
+				0FF1648B2A61A098007C15EA /* ChatViewCells */,
 			);
 			path = ChatViewController;
 			sourceTree = "<group>";
@@ -351,6 +354,17 @@
 				0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */,
 			);
 			path = AddContactViewController;
+			sourceTree = "<group>";
+		};
+		0FF1648B2A61A098007C15EA /* ChatViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				0F591A2F2A5F017B00235A55 /* RightChatCell.swift */,
+				0F591A342A5F0DD400235A55 /* LeftChatCell.swift */,
+				0FF164812A61A083007C15EA /* RightImageCell.swift */,
+				0FF164862A61A091007C15EA /* LeftImageCell.swift */,
+			);
+			path = ChatViewCells;
 			sourceTree = "<group>";
 		};
 		0FF711392A53027D00132FC8 /* Login View Controller */ = {
@@ -656,6 +670,7 @@
 				0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */,
 				0F0D70432A5DB42A008AA633 /* ChatPresenter.swift in Sources */,
 				0F1468A12A5456980012E3A6 /* ContactsPresenter.swift in Sources */,
+				0FF164872A61A091007C15EA /* LeftImageCell.swift in Sources */,
 				0FC3940C2A587DC800E0FAE4 /* AddContactInteractor.swift in Sources */,
 				0F1468BB2A5457010012E3A6 /* MessagesPresenter.swift in Sources */,
 				0F1468932A54564D0012E3A6 /* ContactsController.swift in Sources */,
@@ -690,6 +705,7 @@
 				0FF7117F2A532E1100132FC8 /* Spaces.swift in Sources */,
 				0F1468E22A54577E0012E3A6 /* SettingsFactory.swift in Sources */,
 				0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */,
+				0FF164822A61A083007C15EA /* RightImageCell.swift in Sources */,
 				0F591A302A5F017B00235A55 /* RightChatCell.swift in Sources */,
 				0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */,
 				0F0D70362A5DB40C008AA633 /* ChatController.swift in Sources */,

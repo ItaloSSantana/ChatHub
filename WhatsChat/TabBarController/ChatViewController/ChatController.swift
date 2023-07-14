@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 protocol ChatDisplaying: AnyObject {
     func sendMessage()
@@ -22,6 +23,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
     private lazy var addDocumentButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: Constants.Images.documentIcon), for: .normal)
+        button.addTarget(self, action: #selector(sendImage), for: .touchUpInside)
         return button
     }()
     
@@ -42,12 +44,15 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         tableView.backgroundView = UIImageView(image: UIImage(named: Constants.Images.background))
         tableView.register(LeftChatCell.self, forCellReuseIdentifier: LeftChatCell.identifier)
         tableView.register(RightChatCell.self, forCellReuseIdentifier: RightChatCell.identifier)
+        tableView.register(RightImageCell.self, forCellReuseIdentifier: RightImageCell.identifier)
+        tableView.register(LeftImageCell.self, forCellReuseIdentifier: LeftImageCell.identifier)
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         return tableView
     }()
     
     var messages: [MessageViewModel] = []
+    private var imagePicker = UIImagePickerController()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -58,6 +63,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         super.viewDidLoad()
         chatTableView.dataSource = self
         chatTableView.delegate = self
+        imagePicker.delegate = self
         view.backgroundColor = .white
     }
     
@@ -112,6 +118,11 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         guard let message = textField.text else {return}
         interactor.sendMessage(message: message)
     }
+    
+    @objc private func sendImage() {
+        imagePicker.sourceType = .savedPhotosAlbum
+        present(imagePicker, animated: true, completion: nil)
+    }
 }
 
 extension ChatController: ChatDisplaying {
@@ -137,9 +148,12 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let rightCell = tableView.dequeueReusableCell(withIdentifier: RightChatCell.identifier, for: indexPath) as? RightChatCell else {return UITableViewCell()}
         guard let leftCell = tableView.dequeueReusableCell(withIdentifier: LeftChatCell.identifier, for: indexPath) as? LeftChatCell else {return UITableViewCell()}
+        guard let rightImageCell = tableView.dequeueReusableCell(withIdentifier: RightImageCell.identifier, for: indexPath) as? RightImageCell else {return UITableViewCell()}
+        guard let leftImageCell = tableView.dequeueReusableCell(withIdentifier: LeftImageCell.identifier, for: indexPath) as? LeftImageCell else {return UITableViewCell()}
         
         let message = messages[indexPath.row]
-        guard let text = message.text else {return UITableViewCell()}
+        
+        if let text = message.text {
             if message.isSenderCurrentUser {
                 rightCell.setupCell(text: text)
                 return rightCell
@@ -147,5 +161,27 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
                 leftCell.setupCell(text: text)
                 return leftCell
             }
+        } else {
+            if let image = message.imageUrl {
+                if message.isSenderCurrentUser {
+                    rightImageCell.setupCell(imageUrl: image)
+                    return rightImageCell
+                } else {
+                    leftImageCell.setupCell(imageUrl: image)
+                    return leftImageCell
+                }
+            }
+        }
+        return UITableViewCell()
+    }
+}
+
+extension ChatController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let safeImage = info [UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            interactor.sendImage(image: safeImage)
+            imagePicker.dismiss(animated: true, completion: nil)
         }
     }
+}
+

@@ -1,11 +1,13 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 protocol ChatInteracting: AnyObject {
     func addListenerLoadMessage()
     func sendMessage(message: String)
     func removeListener()
+    func sendImage(image: UIImage)
 }
 
 final class ChatInteractor: ChatInteracting {
@@ -17,12 +19,13 @@ final class ChatInteractor: ChatInteracting {
     private var contactData: UserViewModel?
     private var messageList: [MessageViewModel] = []
     private var messageListener: ListenerRegistration?
+    private var storage: Storage?
     
     
     init(presenter: ChatPresenting, viewModel: UserViewModel) {
         self.presenter = presenter
         self.contactData = viewModel
-        print(viewModel.name)
+        storage = Storage.storage()
         auth = Auth.auth()
         firestore = Firestore.firestore()
         
@@ -55,7 +58,7 @@ final class ChatInteractor: ChatInteracting {
     
     
     func addListenerLoadMessage() {
-        var sender = true
+        var sender = false
         if let contactID = contactData?.id {
             messageListener = firestore?.collection("messages")
                 .document(currentUserID)
@@ -66,19 +69,55 @@ final class ChatInteractor: ChatInteracting {
                     guard let snapshot = querySnapshot else {return}
                     snapshot.documents.forEach { (document) in
                         let data = document.data()
-                        guard let safeCurrentID = data["userID"] as? String,
-                              let safeText = data["text"] as? String else {return}
+                        var viewModel: MessageViewModel?
+                        guard let safeCurrentID = data["userID"] as? String else {return}
                         if self.currentUserID == safeCurrentID {
                             sender = true
                         } else {
                             sender = false
                         }
-                        self.messageList.append(MessageViewModel(userID: safeCurrentID, text: safeText, isSenderCurrentUser: sender))
+                        if let safeText = data["text"] as? String {
+                            viewModel = MessageViewModel(userID: safeCurrentID, text: safeText, imageUrl: nil, isSenderCurrentUser: sender)
+                        }
+                        if let safeImage = data["imageUrl"] as? String {
+                            viewModel = MessageViewModel(userID: safeCurrentID, text: nil, imageUrl: safeImage, isSenderCurrentUser: sender)
+                        }
+                        guard let safeViewModel = viewModel else {return}
+                        self.messageList.append(safeViewModel)
                     }
                     
                     self.presenter.loadMessages(messages: self.messageList)
                 }
                 )}
+    }
+    
+    func sendImage(image: UIImage) {
+        let images = storage?.reference().child("images")
+        guard let uploadImage = image.jpegData(compressionQuality: 0.3) else {return}
+        let uniqueID = UUID().uuidString
+        let imageName = ("\(uniqueID).jpg")
+        guard let messageImageRef = images?.child("messages").child(imageName) else {return}
+        messageImageRef.putData(uploadImage, metadata: nil) { (metadata, error) in
+            if error == nil {
+                print("uploaded image")
+                messageImageRef.downloadURL { (url, error) in
+                    guard let imageUrl = url?.absoluteString else {return}
+                    if let safeContact = self.contactData {
+                        let msg: Dictionary<String, Any> = [
+                            "userID" : self.currentUserID,
+                            "imageUrl" : imageUrl,
+                            "date" : FieldValue.serverTimestamp()
+                        ]
+                        self.saveMessage(currentID: self.currentUserID, contactID: safeContact.id, message: msg)
+                        self.saveMessage(currentID: safeContact.id, contactID: self.currentUserID, message: msg)
+                        //self.presenter.sendMessage()
+                        print("Imagem enviada")
+                    }
+                }
+            } else {
+                print("Not upload image")
+            }
+        }
     }
  
     func removeListener() {
@@ -91,13 +130,13 @@ final class ChatInteractor: ChatInteracting {
 class MessageViewModel {
     let userID: String?
     let text: String?
-  //  let date: String?
+    let imageUrl: String?
     let isSenderCurrentUser: Bool
     
-    init(userID: String, text: String, isSenderCurrentUser: Bool) {
+    init(userID: String, text: String?, imageUrl: String?, isSenderCurrentUser: Bool) {
         self.userID = userID
         self.text = text
-      //  self.date = date
+        self.imageUrl = imageUrl
         self.isSenderCurrentUser = isSenderCurrentUser
     }
 }
