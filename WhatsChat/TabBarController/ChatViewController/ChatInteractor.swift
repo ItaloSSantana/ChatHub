@@ -15,11 +15,12 @@ final class ChatInteractor: ChatInteracting {
     
     private var auth: Auth?
     private var firestore: Firestore?
+    private var storage: Storage?
     private var currentUserID = ""
     private var contactData: UserViewModel?
     private var messageList: [MessageViewModel] = []
     private var messageListener: ListenerRegistration?
-    private var storage: Storage?
+    
     
     
     init(presenter: ChatPresenting, viewModel: UserViewModel) {

@@ -52,6 +52,7 @@
 		0FC394112A587DD200E0FAE4 /* AddContactPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394102A587DD200E0FAE4 /* AddContactPresenter.swift */; };
 		0FC394162A587E1500E0FAE4 /* AddContactCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */; };
 		0FC3941B2A587E2200E0FAE4 /* AddContactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */; };
+		0FC6C2312A6306B700D26EA0 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC6C2302A6306B700D26EA0 /* MessagesCell.swift */; };
 		0FF164822A61A083007C15EA /* RightImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF164812A61A083007C15EA /* RightImageCell.swift */; };
 		0FF164872A61A091007C15EA /* LeftImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF164862A61A091007C15EA /* LeftImageCell.swift */; };
 		0FF711312A53025000132FC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711302A53025000132FC8 /* ViewController.swift */; };
@@ -142,6 +143,7 @@
 		0FC394102A587DD200E0FAE4 /* AddContactPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactPresenter.swift; sourceTree = "<group>"; };
 		0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCoordinator.swift; sourceTree = "<group>"; };
 		0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFactory.swift; sourceTree = "<group>"; };
+		0FC6C2302A6306B700D26EA0 /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		0FF164812A61A083007C15EA /* RightImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightImageCell.swift; sourceTree = "<group>"; };
 		0FF164862A61A091007C15EA /* LeftImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftImageCell.swift; sourceTree = "<group>"; };
 		0FF711302A53025000132FC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				0F1468BA2A5457010012E3A6 /* MessagesPresenter.swift */,
 				0F1468BF2A54570F0012E3A6 /* MessagesCoordinator.swift */,
 				0F1468C42A54571B0012E3A6 /* MessagesFactory.swift */,
+				0FC6C2302A6306B700D26EA0 /* MessagesCell.swift */,
 			);
 			path = MessagesViewController;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				0F71A9A52A523DB3000FBE3E /* SceneDelegate.swift in Sources */,
 				0FF164822A61A083007C15EA /* RightImageCell.swift in Sources */,
 				0F591A302A5F017B00235A55 /* RightChatCell.swift in Sources */,
+				0FC6C2312A6306B700D26EA0 /* MessagesCell.swift in Sources */,
 				0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */,
 				0F0D70362A5DB40C008AA633 /* ChatController.swift in Sources */,
 			);
