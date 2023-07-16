@@ -68,9 +68,9 @@ class MessagesCell: UITableViewCell {
         }
     }
     
-    func setupCell(contact: UserViewModel) {
-        userDisplayName.text = contact.name
-        userMessage.text = contact.email
-        userImage.image = contact.image
+    func setupCell(contact: MessagesViewModel) {
+        userDisplayName.text = contact.contactName
+        userMessage.text = contact.lastMessage
+        userImage.kf.setImage(with: URL(string: contact.contactPhotoUrl))
     }
 }

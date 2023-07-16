@@ -47,16 +47,15 @@ final class ContactsInteractor: ContactsInteracting {
                           let safeEmail = contactData["email"] as? String,
                           let safeBio = contactData["bio"] as? String,
                           let safeUrl = contactData["imageUrl"] as? String,
-                          let safeId = contactData["id"] as? String,
-                          let storageRef = self.storage?.reference(forURL: safeUrl) else {return}
-                    storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) -> Void in
-                        guard let safeData = data else {return}
-                        if let safeImage = UIImage(data: safeData) {
-                            self.contactList.append(UserViewModel(name: safeName, email: safeEmail, image: safeImage, bio: safeBio, id: safeId))
-                        }
+                          let safeId = contactData["id"] as? String else {return}
+                          self.contactList.append(UserViewModel(name: safeName,
+                                                                email: safeEmail,
+                                                                image: safeUrl,
+                                                                bio: safeBio,
+                                                                id: safeId))
                         self.presenter.displayScreen(contacts: self.contactList)
                         self.presenter.isLoadEnabled(verify: false)
-                    }
+                    
                 }
             })
     }
@@ -85,11 +84,11 @@ final class ContactsInteractor: ContactsInteracting {
 class UserViewModel {
     let name: String
     let email: String
-    let image: UIImage?
-    let bio: String?
+    let image: String
+    let bio: String
     let id: String
     
-    init(name: String, email: String,  image: UIImage, bio: String, id: String) {
+    init(name: String, email: String,  image: String, bio: String, id: String) {
         self.name = name
         self.email = email
         self.image = image

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol MessagesDisplaying: AnyObject {
-    func doSomething()
+    func loadLastMessages(messages: [MessagesViewModel])
 }
 
 final class MessagesController: ViewController<MessagesInteracting,UIView> {
@@ -13,9 +13,12 @@ final class MessagesController: ViewController<MessagesInteracting,UIView> {
         return tableView
     }()
     
+    private var messagesList: [MessagesViewModel] = []
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationItem.title = "Messages"
+        interactor.loadLastMessage()
         navigationController?.isNavigationBarHidden = false
         navigationItem.setHidesBackButton(true, animated: true)
         self.tabBarController?.navigationItem.hidesBackButton = true
@@ -28,6 +31,11 @@ final class MessagesController: ViewController<MessagesInteracting,UIView> {
         view.backgroundColor = .blue
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor.removeListener()
+    }
+    
     override func buildViewHierarchy() {
         view.addSubview(messagesTableView)
     }
@@ -37,22 +45,25 @@ final class MessagesController: ViewController<MessagesInteracting,UIView> {
             $0.edges.equalTo(view.safeAreaLayoutGuide.snp.edges)
         }
     }
-    
 }
 
 extension MessagesController: MessagesDisplaying {
-    func doSomething() {
-        //
+    func loadLastMessages(messages: [MessagesViewModel]) {
+        messagesList = messages
+        messagesTableView.reloadData()
     }
 }
 
 extension MessagesController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return messagesList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MessagesCell.identifier, for: indexPath) as? MessagesCell else {return UITableViewCell()}
+        let contact = messagesList[indexPath.row]
+        cell.setupCell(contact: contact)
+        
         return cell
     }
     

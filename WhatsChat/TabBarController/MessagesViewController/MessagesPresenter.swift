@@ -1,7 +1,7 @@
 import Foundation
 
 protocol MessagesPresenting: AnyObject {
-    func displayScreen()
+    func loadLastMessage(messages: [MessagesViewModel])
 }
 
 final class MessagesPresenter: MessagesPresenting {
@@ -12,7 +12,7 @@ final class MessagesPresenter: MessagesPresenting {
         self.coordinator = coordinator
     }
     
-    func displayScreen() {
-        //
+    func loadLastMessage(messages: [MessagesViewModel]) {
+        viewController?.loadLastMessages(messages: messages)
     }
 }

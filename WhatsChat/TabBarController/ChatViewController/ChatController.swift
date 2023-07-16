@@ -3,8 +3,7 @@ import Kingfisher
 
 protocol ChatDisplaying: AnyObject {
     func sendMessage()
-    func loadMessages(messages: [MessageViewModel])
-    func removeListener()
+    func loadMessages(messages: [ChatViewModel])
 }
 
 final class ChatController: ViewController<ChatInteracting,UIView> {
@@ -51,7 +50,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         return tableView
     }()
     
-    var messages: [MessageViewModel] = []
+    var messages: [ChatViewModel] = []
     private var imagePicker = UIImagePickerController()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,17 +125,13 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
 }
 
 extension ChatController: ChatDisplaying {
-    func loadMessages(messages: [MessageViewModel]) {
+    func loadMessages(messages: [ChatViewModel]) {
         self.messages = messages
         chatTableView.reloadData()
     }
     
     func sendMessage() {
         textField.text = ""
-    }
-    
-    func removeListener() {
-        print("exit")
     }
 }
 

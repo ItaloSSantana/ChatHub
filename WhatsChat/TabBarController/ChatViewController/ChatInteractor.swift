@@ -16,12 +16,13 @@ final class ChatInteractor: ChatInteracting {
     private var auth: Auth?
     private var firestore: Firestore?
     private var storage: Storage?
-    private var currentUserID = ""
     private var contactData: UserViewModel?
-    private var messageList: [MessageViewModel] = []
+    private var messageList: [ChatViewModel] = []
     private var messageListener: ListenerRegistration?
     
-    
+    private var currentUserID = ""
+    private var currentUserName = ""
+    private var currentUserImageUrl = ""
     
     init(presenter: ChatPresenting, viewModel: UserViewModel) {
         self.presenter = presenter
@@ -33,6 +34,7 @@ final class ChatInteractor: ChatInteracting {
         if let currentID = auth?.currentUser?.uid {
             self.currentUserID = currentID
         }
+        getCurrentUserData()
     }
     
     func sendMessage(message: String) {
@@ -45,9 +47,35 @@ final class ChatInteractor: ChatInteracting {
                 ]
                 saveMessage(currentID: currentUserID, contactID: safeContact.id, message: msg)
                 saveMessage(currentID: safeContact.id, contactID: currentUserID, message: msg)
+
+                var chat: Dictionary<String, Any> = [
+                    "userID": currentUserID,
+                    "contactID": safeContact.id,
+                    "lastMessage": message
+                ]
+                
+                chat["contactName"] = contactData?.name as Any
+                chat["contactPhotoUrl"] = contactData?.image as Any
+                saveChat(currentID: currentUserID, contactID: safeContact.id, chat: chat)
+                
+                chat["contactName"] = currentUserName
+                chat["contactPhotoUrl"] = currentUserImageUrl
+                saveChat(currentID: safeContact.id, contactID: currentUserID, chat: chat)
                 self.presenter.sendMessage()
             }
         }
+    }
+    
+    private func getCurrentUserData() {
+        firestore?.collection("users")
+            .document(currentUserID)
+            .getDocument(completion: { (snapshot, error) in
+                guard let safeData = snapshot?.data(),
+                      let safeName = safeData["name"] as? String,
+                      let safeUrl = safeData["imageUrl"] as? String else {return}
+                self.currentUserName = safeName
+                self.currentUserImageUrl = safeUrl
+            })
     }
     
     private func saveMessage(currentID: String, contactID: String, message: Dictionary<String, Any>) {
@@ -57,6 +85,13 @@ final class ChatInteractor: ChatInteracting {
             .addDocument(data: message)
     }
     
+    private func saveChat(currentID: String, contactID: String, chat: Dictionary<String, Any>) {
+        firestore?.collection("chats")
+            .document(currentID)
+            .collection("lastMessage")
+            .document(contactID)
+            .setData(chat)
+    }
     
     func addListenerLoadMessage() {
         var sender = false
@@ -70,7 +105,7 @@ final class ChatInteractor: ChatInteracting {
                     guard let snapshot = querySnapshot else {return}
                     snapshot.documents.forEach { (document) in
                         let data = document.data()
-                        var viewModel: MessageViewModel?
+                        var viewModel: ChatViewModel?
                         guard let safeCurrentID = data["userID"] as? String else {return}
                         if self.currentUserID == safeCurrentID {
                             sender = true
@@ -78,10 +113,10 @@ final class ChatInteractor: ChatInteracting {
                             sender = false
                         }
                         if let safeText = data["text"] as? String {
-                            viewModel = MessageViewModel(userID: safeCurrentID, text: safeText, imageUrl: nil, isSenderCurrentUser: sender)
+                            viewModel = ChatViewModel(userID: safeCurrentID, text: safeText, imageUrl: nil, isSenderCurrentUser: sender)
                         }
                         if let safeImage = data["imageUrl"] as? String {
-                            viewModel = MessageViewModel(userID: safeCurrentID, text: nil, imageUrl: safeImage, isSenderCurrentUser: sender)
+                            viewModel = ChatViewModel(userID: safeCurrentID, text: nil, imageUrl: safeImage, isSenderCurrentUser: sender)
                         }
                         guard let safeViewModel = viewModel else {return}
                         self.messageList.append(safeViewModel)
@@ -99,20 +134,37 @@ final class ChatInteractor: ChatInteracting {
         let imageName = ("\(uniqueID).jpg")
         guard let messageImageRef = images?.child("messages").child(imageName) else {return}
         messageImageRef.putData(uploadImage, metadata: nil) { (metadata, error) in
+            
             if error == nil {
-                print("uploaded image")
                 messageImageRef.downloadURL { (url, error) in
                     guard let imageUrl = url?.absoluteString else {return}
                     if let safeContact = self.contactData {
+                        
+                        // Save to Message Screen (chat screen)
                         let msg: Dictionary<String, Any> = [
                             "userID" : self.currentUserID,
                             "imageUrl" : imageUrl,
                             "date" : FieldValue.serverTimestamp()
                         ]
+                        
                         self.saveMessage(currentID: self.currentUserID, contactID: safeContact.id, message: msg)
                         self.saveMessage(currentID: safeContact.id, contactID: self.currentUserID, message: msg)
-                        //self.presenter.sendMessage()
-                        print("Imagem enviada")
+                        
+                        // Save to Messages screen
+                        var chat: Dictionary<String, Any> = [
+                            "userID": self.currentUserID,
+                            "contactID": safeContact.id,
+                            "lastMessage": "Image..."
+                        ]
+                        
+                        chat["contactName"] = self.contactData?.name as Any
+                        chat["contactPhotoUrl"] = self.contactData?.image as Any
+                        self.saveChat(currentID: self.currentUserID, contactID: safeContact.id, chat: chat)
+                        
+                        chat["contactName"] = self.currentUserName
+                        chat["contactPhotoUrl"] = self.currentUserImageUrl
+                        self.saveChat(currentID: safeContact.id, contactID: self.currentUserID, chat: chat)
+                        self.presenter.sendMessage()
                     }
                 }
             } else {
@@ -120,15 +172,13 @@ final class ChatInteractor: ChatInteracting {
             }
         }
     }
- 
+    
     func removeListener() {
         messageListener?.remove()
-        presenter.removeListener()
     }
 }
 
-
-class MessageViewModel {
+class ChatViewModel {
     let userID: String?
     let text: String?
     let imageUrl: String?

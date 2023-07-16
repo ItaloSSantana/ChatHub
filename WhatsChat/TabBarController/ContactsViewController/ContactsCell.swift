@@ -81,6 +81,6 @@ class ContactsCell: UITableViewCell {
         userDisplayName.text = contact.name
         userDisplayEmail.text = contact.email
         userDisplayBio.text = contact.bio
-        userImage.image = contact.image
+        userImage.kf.setImage(with: URL(string: contact.image))
     }
 }
