@@ -33,18 +33,14 @@ class CustomTabBarController: UITabBarController {
 }
 
 extension CustomTabBarController: ContactsDelegate {
-    func continueFlow() {
-        //
+    func contactChat(viewModel: ContactViewModel) {
+        let chatController = ChatFactory.make(delegate: self, viewModel: viewModel)
+        navigationController?.pushViewController(chatController, animated: true)
     }
     
     func addPressed(){
         let editController = AddContactFactory.make(delegate: self)
         navigationController?.pushViewController(editController, animated: true)
-    }
-    
-    func contactChat(viewModel: UserViewModel) {
-        let chatController = ChatFactory.make(delegate: self, viewModel: viewModel)
-        navigationController?.pushViewController(chatController, animated: true)
     }
 }
 
@@ -60,7 +56,10 @@ extension CustomTabBarController: SettingsDelegate {
 }
 
 extension CustomTabBarController: MessagesDelegate {
-    
+    func contactInfo(contactData: ContactViewModel) {
+        let chatController = ChatFactory.make(delegate: self, viewModel: contactData)
+        navigationController?.pushViewController(chatController, animated: true)
+    }
 }
 
 extension CustomTabBarController: EditProfileDelegate {

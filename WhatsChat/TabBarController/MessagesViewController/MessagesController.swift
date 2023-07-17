@@ -67,5 +67,10 @@ extension MessagesController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.messagesTableView.deselectRow(at: indexPath, animated: true)
+        let contact = messagesList[indexPath.row]
+        let newViewModel = ContactViewModel(name: contact.contactName, email: nil, image: contact.contactPhotoUrl, bio: nil, id: contact.contactID)
+        interactor.contactChat(contactData: newViewModel)
+    }
 }

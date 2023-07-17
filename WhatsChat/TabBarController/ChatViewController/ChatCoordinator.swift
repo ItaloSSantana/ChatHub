@@ -1,12 +1,10 @@
 import UIKit
 
 protocol ChatDelegate: AnyObject {
-    func continueFlow()
 }
 
 protocol ChatCoordinating: AnyObject {
     var viewController: UIViewController? {get set}
-    func continueFlow()
 }
 
 class ChatCoordinator: ChatCoordinating {
@@ -15,9 +13,5 @@ class ChatCoordinator: ChatCoordinating {
     
     init(delegate: ChatDelegate) {
         self.delegate = delegate
-    }
-    
-    func continueFlow() {
-        //
     }
 }

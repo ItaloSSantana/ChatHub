@@ -23,7 +23,6 @@ final class LoginInteractor: LoginInteracting {
         }
         auth?.signIn(withEmail: safeEmail, password: safePassword, completion: { (user, error) in
             if let user = user {
-                print("Logged Succefully")
                 self.presenter.confirmLogin()
             } else {
                 print("Not logged")

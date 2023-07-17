@@ -129,6 +129,6 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
 
 extension RegisterController: RegisterDisplaying {
     func doSomething() {
-        print("Success")
+        //
     }
 }

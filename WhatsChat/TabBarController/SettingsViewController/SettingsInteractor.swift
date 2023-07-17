@@ -47,7 +47,6 @@ final class SettingsInteractor: SettingsInteracting {
         func logoutPressed() {
             do {
                 try auth?.signOut()
-                print("LogoutSuccess")
                 presenter.logoutPressed()
             } catch {
                 print("Error logging out user")
@@ -60,16 +59,4 @@ final class SettingsInteractor: SettingsInteracting {
 }
 
 
-class ProfileViewModel {
-    let name: String?
-    let email: String?
-    let image: UIImage?
-    let bio: String?
-    
-    init(name: String, email: String,  image: UIImage, bio: String) {
-        self.name = name
-        self.email = email
-        self.image = image
-        self.bio = bio
-    }
-}
+

@@ -118,7 +118,6 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
 
 extension LoginController: LoginDisplaying {
     func doSomething() {
-        print("Logged In")
     }
 }
 

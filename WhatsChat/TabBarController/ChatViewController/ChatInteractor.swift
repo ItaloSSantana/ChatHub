@@ -16,7 +16,7 @@ final class ChatInteractor: ChatInteracting {
     private var auth: Auth?
     private var firestore: Firestore?
     private var storage: Storage?
-    private var contactData: UserViewModel?
+    private var contactData: ContactViewModel?
     private var messageList: [ChatViewModel] = []
     private var messageListener: ListenerRegistration?
     
@@ -24,7 +24,7 @@ final class ChatInteractor: ChatInteracting {
     private var currentUserName = ""
     private var currentUserImageUrl = ""
     
-    init(presenter: ChatPresenting, viewModel: UserViewModel) {
+    init(presenter: ChatPresenting, viewModel: ContactViewModel) {
         self.presenter = presenter
         self.contactData = viewModel
         storage = Storage.storage()
@@ -49,15 +49,16 @@ final class ChatInteractor: ChatInteracting {
                 saveMessage(currentID: safeContact.id, contactID: currentUserID, message: msg)
 
                 var chat: Dictionary<String, Any> = [
-                    "userID": currentUserID,
-                    "contactID": safeContact.id,
                     "lastMessage": message
                 ]
-                
+                chat["userID"] = currentUserID as Any
+                chat["contactID"] = safeContact.id as Any
                 chat["contactName"] = contactData?.name as Any
                 chat["contactPhotoUrl"] = contactData?.image as Any
                 saveChat(currentID: currentUserID, contactID: safeContact.id, chat: chat)
                 
+                chat["userID"] = safeContact.id as Any
+                chat["contactID"] = currentUserID as Any
                 chat["contactName"] = currentUserName
                 chat["contactPhotoUrl"] = currentUserImageUrl
                 saveChat(currentID: safeContact.id, contactID: currentUserID, chat: chat)
@@ -156,11 +157,14 @@ final class ChatInteractor: ChatInteracting {
                             "contactID": safeContact.id,
                             "lastMessage": "Image..."
                         ]
-                        
+                        chat["userID"] = self.currentUserID as Any
+                        chat["contactID"] = safeContact.id as Any
                         chat["contactName"] = self.contactData?.name as Any
                         chat["contactPhotoUrl"] = self.contactData?.image as Any
                         self.saveChat(currentID: self.currentUserID, contactID: safeContact.id, chat: chat)
                         
+                        chat["userID"] = safeContact.id as Any
+                        chat["contactID"] = self.currentUserID as Any
                         chat["contactName"] = self.currentUserName
                         chat["contactPhotoUrl"] = self.currentUserImageUrl
                         self.saveChat(currentID: safeContact.id, contactID: self.currentUserID, chat: chat)
@@ -178,16 +182,3 @@ final class ChatInteractor: ChatInteracting {
     }
 }
 
-class ChatViewModel {
-    let userID: String?
-    let text: String?
-    let imageUrl: String?
-    let isSenderCurrentUser: Bool
-    
-    init(userID: String, text: String?, imageUrl: String?, isSenderCurrentUser: Bool) {
-        self.userID = userID
-        self.text = text
-        self.imageUrl = imageUrl
-        self.isSenderCurrentUser = isSenderCurrentUser
-    }
-}

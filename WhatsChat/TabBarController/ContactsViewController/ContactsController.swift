@@ -2,14 +2,14 @@ import UIKit
 
 protocol ContactsDisplaying: AnyObject {
     func doSomething()
-    func getContacts(contacts: [UserViewModel])
+    func getContacts(contacts: [ContactViewModel])
     func getContactImage(image: UIImage)
     func isLoadEnabled(verify: Bool)
 }
 
 final class ContactsController: ViewController<ContactsInteracting,UIView> {
     private lazy var searchBar: UISearchBar = {
-           let search = UISearchBar()
+        let search = UISearchBar()
         search.searchBarStyle = UISearchBar.Style.minimal
         search.placeholder = " Search..."
         search.sizeToFit()
@@ -20,10 +20,9 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
         search.backgroundImage = UIImage()
         search.barTintColor = .clear
         search.searchTextField.layer.cornerRadius = 20
-        //search.searchTextField.backgroundColor = .lightGray
         search.searchTextField.layer.masksToBounds = true
-           return search
-       }()
+        return search
+    }()
     
     lazy var contactsTableView: UITableView = {
         let tableView = UITableView()
@@ -46,8 +45,8 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
         return label
     }()
     
-    private var contactList: [UserViewModel] = []
-    private var filterList: [UserViewModel] = []
+    private var contactList: [ContactViewModel] = []
+    private var filterList: [ContactViewModel] = []
     private var contactImage: UIImage?
     
     
@@ -66,7 +65,6 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(contactList)
     }
     
     override func viewDidLoad() {
@@ -133,7 +131,7 @@ extension ContactsController: ContactsDisplaying {
         }
     }
     
-    func getContacts(contacts: [UserViewModel]) {
+    func getContacts(contacts: [ContactViewModel]) {
         contactList = contacts
     }
     
@@ -176,10 +174,8 @@ extension ContactsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected")
+        self.contactsTableView.deselectRow(at: indexPath, animated: true)
         let contact = contactList[indexPath.row]
         interactor.contactChat(sender: contact)
-       // self.contactsTableView.deselectRow(at: indexPath, animated: true)
-        
     }
 }

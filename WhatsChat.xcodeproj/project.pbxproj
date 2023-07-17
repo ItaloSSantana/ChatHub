@@ -46,6 +46,10 @@
 		0F71A9D92A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DA2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DB2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
+		0FC1F93E2A65A72A001CC456 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1F93D2A65A72A001CC456 /* MessagesViewModel.swift */; };
+		0FC1F9432A65A783001CC456 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1F9422A65A783001CC456 /* ContactViewModel.swift */; };
+		0FC1F94B2A65A7B1001CC456 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1F94A2A65A7B1001CC456 /* ProfileViewModel.swift */; };
+		0FC1F9532A65A7C9001CC456 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1F9522A65A7C9001CC456 /* ChatViewModel.swift */; };
 		0FC393FE2A585E5200E0FAE4 /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC393FD2A585E5200E0FAE4 /* ContactsCell.swift */; };
 		0FC394042A587D8B00E0FAE4 /* AddContactController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394032A587D8A00E0FAE4 /* AddContactController.swift */; };
 		0FC3940C2A587DC800E0FAE4 /* AddContactInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3940B2A587DC800E0FAE4 /* AddContactInteractor.swift */; };
@@ -137,6 +141,10 @@
 		0F71A9C72A523DC6000FBE3E /* WhatsChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsChatUITests.swift; sourceTree = "<group>"; };
 		0F71A9C92A523DC6000FBE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0FC1F93D2A65A72A001CC456 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		0FC1F9422A65A783001CC456 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		0FC1F94A2A65A7B1001CC456 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		0FC1F9522A65A7C9001CC456 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		0FC393FD2A585E5200E0FAE4 /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		0FC394032A587D8A00E0FAE4 /* AddContactController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactController.swift; sourceTree = "<group>"; };
 		0FC3940B2A587DC800E0FAE4 /* AddContactInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactInteractor.swift; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 				0F0D70422A5DB42A008AA633 /* ChatPresenter.swift */,
 				0F0D70472A5DB439008AA633 /* ChatCoordinator.swift */,
 				0F0D704C2A5DB444008AA633 /* ChatFactory.swift */,
+				0FC1F9522A65A7C9001CC456 /* ChatViewModel.swift */,
 				0FF1648B2A61A098007C15EA /* ChatViewCells */,
 			);
 			path = ChatViewController;
@@ -221,6 +230,7 @@
 				0F1468A52A5456A90012E3A6 /* ContactsCoordinator.swift */,
 				0F1468AA2A5456B70012E3A6 /* ContactsFactory.swift */,
 				0FC393FD2A585E5200E0FAE4 /* ContactsCell.swift */,
+				0FC1F9422A65A783001CC456 /* ContactViewModel.swift */,
 				0FC394022A587D6E00E0FAE4 /* AddContactViewController */,
 			);
 			path = ContactsViewController;
@@ -235,6 +245,7 @@
 				0F1468BF2A54570F0012E3A6 /* MessagesCoordinator.swift */,
 				0F1468C42A54571B0012E3A6 /* MessagesFactory.swift */,
 				0FC6C2302A6306B700D26EA0 /* MessagesCell.swift */,
+				0FC1F93D2A65A72A001CC456 /* MessagesViewModel.swift */,
 			);
 			path = MessagesViewController;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 				0F1468D72A5457640012E3A6 /* SettingsPresenter.swift */,
 				0F1468DC2A54576F0012E3A6 /* SettingsCoordinator.swift */,
 				0F1468E12A54577E0012E3A6 /* SettingsFactory.swift */,
+				0FC1F94A2A65A7B1001CC456 /* ProfileViewModel.swift */,
 			);
 			path = SettingsViewController;
 			sourceTree = "<group>";
@@ -671,6 +683,7 @@
 				0FC394162A587E1500E0FAE4 /* AddContactCoordinator.swift in Sources */,
 				0F14689C2A54568C0012E3A6 /* ContactsInteractor.swift in Sources */,
 				0F71A9A72A523DB3000FBE3E /* LoginController.swift in Sources */,
+				0FC1F94B2A65A7B1001CC456 /* ProfileViewModel.swift in Sources */,
 				0F0D70432A5DB42A008AA633 /* ChatPresenter.swift in Sources */,
 				0F1468A12A5456980012E3A6 /* ContactsPresenter.swift in Sources */,
 				0FF164872A61A091007C15EA /* LeftImageCell.swift in Sources */,
@@ -696,12 +709,14 @@
 				0F71A9A32A523DB3000FBE3E /* AppDelegate.swift in Sources */,
 				0F591A352A5F0DD400235A55 /* LeftChatCell.swift in Sources */,
 				0FF7114B2A530AA500132FC8 /* LoginCoordinator.swift in Sources */,
+				0FC1F9432A65A783001CC456 /* ContactViewModel.swift in Sources */,
 				0F1468A62A5456A90012E3A6 /* ContactsCoordinator.swift in Sources */,
 				0F58CC7C2A56FD89007A22A6 /* EditProfileController.swift in Sources */,
 				0FC393FE2A585E5200E0FAE4 /* ContactsCell.swift in Sources */,
 				0F0D704D2A5DB444008AA633 /* ChatFactory.swift in Sources */,
 				0F1468D82A5457640012E3A6 /* SettingsPresenter.swift in Sources */,
 				0FC394112A587DD200E0FAE4 /* AddContactPresenter.swift in Sources */,
+				0FC1F93E2A65A72A001CC456 /* MessagesViewModel.swift in Sources */,
 				0F58CC972A56FDE3007A22A6 /* EditProfileFactory.swift in Sources */,
 				0FF711A02A5332D900132FC8 /* RegisterCoordinator.swift in Sources */,
 				0F0D703E2A5DB41C008AA633 /* ChatInteractor.swift in Sources */,
@@ -712,6 +727,7 @@
 				0F591A302A5F017B00235A55 /* RightChatCell.swift in Sources */,
 				0FC6C2312A6306B700D26EA0 /* MessagesCell.swift in Sources */,
 				0FF711AA2A53379B00132FC8 /* Constants.swift in Sources */,
+				0FC1F9532A65A7C9001CC456 /* ChatViewModel.swift in Sources */,
 				0F0D70362A5DB40C008AA633 /* ChatController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

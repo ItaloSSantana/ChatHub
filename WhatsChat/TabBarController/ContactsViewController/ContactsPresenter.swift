@@ -1,11 +1,11 @@
 import UIKit
 
 protocol ContactsPresenting: AnyObject {
-    func displayScreen(contacts: [UserViewModel])
+    func displayScreen(contacts: [ContactViewModel])
     func setContactImage(image: UIImage)
     func addPressed()
     func isLoadEnabled(verify: Bool)
-    func contactChat(sender: UserViewModel)
+    func contactChat(sender: ContactViewModel)
 }
 
 final class ContactsPresenter: ContactsPresenting {
@@ -16,7 +16,7 @@ final class ContactsPresenter: ContactsPresenting {
         self.coordinator = coordinator
     }
     
-    func displayScreen(contacts: [UserViewModel]) {
+    func displayScreen(contacts: [ContactViewModel]) {
         viewController?.getContacts(contacts: contacts)
     }
     func addPressed() {
@@ -31,7 +31,7 @@ final class ContactsPresenter: ContactsPresenting {
         viewController?.isLoadEnabled(verify: verify)
     }
     
-    func contactChat(sender: UserViewModel) {
+    func contactChat(sender: ContactViewModel) {
         coordinator.contactChat(sender: sender)
     }
     

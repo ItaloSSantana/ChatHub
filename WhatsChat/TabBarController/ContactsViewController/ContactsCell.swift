@@ -77,7 +77,7 @@ class ContactsCell: UITableViewCell {
         }
     }
     
-    func setupCell(contact: UserViewModel) {
+    func setupCell(contact: ContactViewModel) {
         userDisplayName.text = contact.name
         userDisplayEmail.text = contact.email
         userDisplayBio.text = contact.bio

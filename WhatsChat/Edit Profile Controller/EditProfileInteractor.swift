@@ -32,9 +32,7 @@ final class EditProfileInteractor: EditProfileInteracting {
             currentUser?.updateEmail(to: safeEmail, completion: { error in
                 if let error = error {
                     print("Email not changed")
-                } else {
-                    print(safeBio)
-                    self.firestore?.collection("users")
+                } else {                    self.firestore?.collection("users")
                         .document(self.userID)
                         .updateData(["email": safeEmail, "name": safeName, "bio": safeBio])
                     self.presenter.confirmPressed()

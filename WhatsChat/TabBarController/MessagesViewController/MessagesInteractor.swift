@@ -5,6 +5,7 @@ import FirebaseStorage
 
 protocol MessagesInteracting: AnyObject {
     func loadLastMessage()
+    func contactChat(contactData: ContactViewModel)
     func removeListener()
 }
 
@@ -53,23 +54,15 @@ final class MessagesInteractor: MessagesInteracting {
             })
     }
     
+    func contactChat(contactData: ContactViewModel) {
+        presenter.contactChat(contactData: contactData)
+    }
+    
     func removeListener() {
         messageListener?.remove()
     }
 }
 
-class MessagesViewModel {
-    let userID: String
-    let contactID: String
-    let contactName: String
-    let contactPhotoUrl: String
-    let lastMessage: String
-    
-    init(userID: String, contactID: String,  contactName: String, contactPhotoUrl: String, lastMessage: String) {
-        self.userID = userID
-        self.contactID = contactID
-        self.contactName = contactName
-        self.contactPhotoUrl = contactPhotoUrl
-        self.lastMessage = lastMessage
-    }
-}
+
+
+

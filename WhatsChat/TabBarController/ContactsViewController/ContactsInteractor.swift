@@ -7,7 +7,7 @@ protocol ContactsInteracting: AnyObject {
     func loadData()
     func addPressed()
     func searchPressed(text: String)
-    func contactChat(sender: UserViewModel)
+    func contactChat(sender: ContactViewModel)
 }
 
 final class ContactsInteractor: ContactsInteracting {
@@ -17,7 +17,7 @@ final class ContactsInteractor: ContactsInteracting {
     private var firestore: Firestore?
     private var storage: Storage?
     private var currentUserID = ""
-    private var contactList: [UserViewModel] = []
+    private var contactList: [ContactViewModel] = []
     
     init(presenter: ContactsPresenting) {
         self.presenter = presenter
@@ -48,7 +48,7 @@ final class ContactsInteractor: ContactsInteracting {
                           let safeBio = contactData["bio"] as? String,
                           let safeUrl = contactData["imageUrl"] as? String,
                           let safeId = contactData["id"] as? String else {return}
-                          self.contactList.append(UserViewModel(name: safeName,
+                          self.contactList.append(ContactViewModel(name: safeName,
                                                                 email: safeEmail,
                                                                 image: safeUrl,
                                                                 bio: safeBio,
@@ -71,7 +71,7 @@ final class ContactsInteractor: ContactsInteracting {
         self.presenter.displayScreen(contacts: self.contactList)
     }
     
-    func contactChat(sender: UserViewModel) {
+    func contactChat(sender: ContactViewModel) {
         presenter.contactChat(sender: sender)
     }
     
@@ -81,19 +81,5 @@ final class ContactsInteractor: ContactsInteracting {
     
 }
 
-class UserViewModel {
-    let name: String
-    let email: String
-    let image: String
-    let bio: String
-    let id: String
-    
-    init(name: String, email: String,  image: String, bio: String, id: String) {
-        self.name = name
-        self.email = email
-        self.image = image
-        self.bio = bio
-        self.id = id
-    }
-}
+
 

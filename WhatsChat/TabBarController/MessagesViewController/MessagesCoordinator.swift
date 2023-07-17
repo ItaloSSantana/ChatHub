@@ -1,12 +1,12 @@
 import UIKit
 
 protocol MessagesDelegate: AnyObject {
-    func continueFlow()
+    func contactInfo(contactData: ContactViewModel)
 }
 
 protocol MessagesCoordinating: AnyObject {
     var viewController: UIViewController? {get set}
-    func continueFlow()
+    func contactChat(contactData: ContactViewModel)
 }
 
 class MessagesCoordinator: MessagesCoordinating {
@@ -17,7 +17,7 @@ class MessagesCoordinator: MessagesCoordinating {
         self.delegate = delegate
     }
     
-    func continueFlow() {
-        //
+    func contactChat(contactData: ContactViewModel) {
+        delegate.contactInfo(contactData: contactData)
     }
 }

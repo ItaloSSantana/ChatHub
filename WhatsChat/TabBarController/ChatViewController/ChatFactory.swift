@@ -2,7 +2,7 @@ import UIKit
 
 enum ChatFactory {
     static func make(delegate: ChatDelegate,
-                     viewModel: UserViewModel) -> UIViewController {
+                     viewModel: ContactViewModel) -> UIViewController {
         let coordinator = ChatCoordinator(delegate:delegate)
         let presenter = ChatPresenter(coordinator: coordinator)
         let interactor = ChatInteractor(presenter: presenter, viewModel: viewModel)
