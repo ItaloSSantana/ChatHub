@@ -122,7 +122,6 @@ final class ChatInteractor: ChatInteracting {
                         guard let safeViewModel = viewModel else {return}
                         self.messageList.append(safeViewModel)
                     }
-                    
                     self.presenter.loadMessages(messages: self.messageList)
                 }
                 )}

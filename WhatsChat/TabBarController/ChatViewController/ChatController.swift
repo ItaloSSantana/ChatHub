@@ -122,6 +122,10 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         imagePicker.sourceType = .savedPhotosAlbum
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    override func configureViews() {
+        self.hideKeyboardWhenTappedAround()
+    }
 }
 
 extension ChatController: ChatDisplaying {

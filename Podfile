@@ -9,8 +9,9 @@ target 'WhatsChat' do
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
 	pod 'FirebaseStorage'
-  pod 'SnapKit'
-pod 'Kingfisher'
+  	pod 'SnapKit'
+	pod 'Kingfisher'
+        pod 'IQKeyboardManagerSwift'
   target 'WhatsChatTests' do
     inherit! :search_paths
     # Pods for testing
