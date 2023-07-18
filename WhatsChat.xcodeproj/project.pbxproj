@@ -58,6 +58,12 @@
 		0FC394162A587E1500E0FAE4 /* AddContactCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */; };
 		0FC3941B2A587E2200E0FAE4 /* AddContactFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */; };
 		0FC6C2312A6306B700D26EA0 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC6C2302A6306B700D26EA0 /* MessagesCell.swift */; };
+		0FCB4E712A671C9A00BC709B /* HindVadodara-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FCB4E702A671C9A00BC709B /* HindVadodara-Regular.ttf */; };
+		0FCB4E722A671C9A00BC709B /* HindVadodara-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FCB4E702A671C9A00BC709B /* HindVadodara-Regular.ttf */; };
+		0FCB4E732A671C9A00BC709B /* HindVadodara-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FCB4E702A671C9A00BC709B /* HindVadodara-Regular.ttf */; };
+		0FCB4E782A671CAD00BC709B /* Fredoka-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FCB4E772A671CAD00BC709B /* Fredoka-Regular.ttf */; };
+		0FCB4E792A671CAD00BC709B /* Fredoka-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FCB4E772A671CAD00BC709B /* Fredoka-Regular.ttf */; };
+		0FCB4E7A2A671CAD00BC709B /* Fredoka-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FCB4E772A671CAD00BC709B /* Fredoka-Regular.ttf */; };
 		0FF164822A61A083007C15EA /* RightImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF164812A61A083007C15EA /* RightImageCell.swift */; };
 		0FF164872A61A091007C15EA /* LeftImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF164862A61A091007C15EA /* LeftImageCell.swift */; };
 		0FF711312A53025000132FC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF711302A53025000132FC8 /* ViewController.swift */; };
@@ -154,6 +160,8 @@
 		0FC394152A587E1500E0FAE4 /* AddContactCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactCoordinator.swift; sourceTree = "<group>"; };
 		0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactFactory.swift; sourceTree = "<group>"; };
 		0FC6C2302A6306B700D26EA0 /* MessagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
+		0FCB4E702A671C9A00BC709B /* HindVadodara-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HindVadodara-Regular.ttf"; sourceTree = "<group>"; };
+		0FCB4E772A671CAD00BC709B /* Fredoka-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Regular.ttf"; sourceTree = "<group>"; };
 		0FF164812A61A083007C15EA /* RightImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightImageCell.swift; sourceTree = "<group>"; };
 		0FF164862A61A091007C15EA /* LeftImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftImageCell.swift; sourceTree = "<group>"; };
 		0FF711302A53025000132FC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +330,7 @@
 		0F71A9A12A523DB3000FBE3E /* WhatsChat */ = {
 			isa = PBXGroup;
 			children = (
+				0FCB4E6F2A671C8900BC709B /* Fonts */,
 				0FC1B2D82A66F17A00A1CA4B /* Common */,
 				0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */,
 				0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */,
@@ -380,6 +389,15 @@
 				0FC3941A2A587E2200E0FAE4 /* AddContactFactory.swift */,
 			);
 			path = AddContactViewController;
+			sourceTree = "<group>";
+		};
+		0FCB4E6F2A671C8900BC709B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0FCB4E702A671C9A00BC709B /* HindVadodara-Regular.ttf */,
+				0FCB4E772A671CAD00BC709B /* Fredoka-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		0FF1648B2A61A098007C15EA /* ChatViewCells */ = {
@@ -548,7 +566,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FCB4E712A671C9A00BC709B /* HindVadodara-Regular.ttf in Resources */,
 				0F71A9B22A523DC5000FBE3E /* LaunchScreen.storyboard in Resources */,
+				0FCB4E782A671CAD00BC709B /* Fredoka-Regular.ttf in Resources */,
 				0F71A9D92A5245ED000FBE3E /* GoogleService-Info.plist in Resources */,
 				0F71A9AF2A523DC5000FBE3E /* Assets.xcassets in Resources */,
 			);
@@ -558,6 +578,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FCB4E722A671C9A00BC709B /* HindVadodara-Regular.ttf in Resources */,
+				0FCB4E792A671CAD00BC709B /* Fredoka-Regular.ttf in Resources */,
 				0F71A9DA2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,6 +588,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FCB4E732A671C9A00BC709B /* HindVadodara-Regular.ttf in Resources */,
+				0FCB4E7A2A671CAD00BC709B /* Fredoka-Regular.ttf in Resources */,
 				0F71A9DB2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

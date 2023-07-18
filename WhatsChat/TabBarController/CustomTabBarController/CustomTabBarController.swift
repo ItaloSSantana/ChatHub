@@ -47,7 +47,7 @@ extension CustomTabBarController: ContactsDelegate {
 extension CustomTabBarController: SettingsDelegate {
     func editPressed() {
         let editController = EditProfileFactory.make(delegate: self)
-        navigationController?.pushViewController(editController, animated: true)
+        navigationController?.present(editController, animated: true)
     }
     
     func logoutPressed() {
@@ -64,7 +64,7 @@ extension CustomTabBarController: MessagesDelegate {
 
 extension CustomTabBarController: EditProfileDelegate {
     func confirmPressed() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.dismiss(animated: true)
     }
 }
 

@@ -20,5 +20,11 @@ struct Constants {
         static let blueHorGradient = "BlueViewHor"
         static let purpleGradient = "PurpleView"
         static let logoImage = "ChatHub"
+        static let blueBackgroundSettings = "blueBackgroundSettings"
+    }
+    
+    struct Fonts {
+        static let fredokaFont = "Fredoka-Regular"
+        static let hindVadodaraFont = "HindVadodara-Regular"
     }
 }

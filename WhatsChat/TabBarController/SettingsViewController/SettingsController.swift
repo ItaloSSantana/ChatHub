@@ -6,8 +6,27 @@ protocol SettingsDisplaying: AnyObject {
 
 final class SettingsController: ViewController<SettingsInteracting,UIView> {
     private lazy var cardView: UIView = {
-       let view = UIView()
-        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
+        let view = UIView()
+        view.backgroundColor = .systemPurple
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 80
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        view.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowRadius = 8.0
+        view.layer.masksToBounds = false
+        return view
+    }()
+    
+    private lazy var gradientImage: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: Constants.Images.blueBackgroundSettings)
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 80
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        
         return view
     }()
     
@@ -23,9 +42,9 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         image.image = UIImage(named: Constants.Images.profileImage)
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.layer.cornerRadius = 60
+        image.layer.cornerRadius = 75
         image.layer.borderWidth = 4
-        image.layer.borderColor = UIColor(hexaRGBA: Constants.Colors.secondColor)?.cgColor
+        image.layer.borderColor = UIColor(hexaRGBA: Constants.Colors.whiteColor)?.cgColor
         return image
     }()
     
@@ -33,10 +52,10 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
        let view = UIView()
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
-        view.layer.cornerRadius = 60
+        view.layer.cornerRadius = 75
         view.layer.borderWidth = 4
-        view.layer.borderColor = UIColor(hexaRGBA: Constants.Colors.secondColor)?.cgColor
-        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.secondColor)?.cgColor
+        view.layer.borderColor = UIColor(hexaRGBA: Constants.Colors.whiteColor)?.cgColor
+        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
         view.layer.shadowOffset = CGSize(width: 2, height: 3)
         view.layer.shadowOpacity = 0.5
         view.layer.shadowRadius = 3
@@ -48,7 +67,13 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         let label = UILabel()
         label.text = "--"
         label.textColor = .white
-        label.font = .systemFont(ofSize: 18)
+        label.textAlignment = .center
+        label.font = UIFont(name: Constants.Fonts.hindVadodaraFont, size: 26)
+        label.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        label.layer.shadowOffset = CGSize(width: 2, height: 3)
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowRadius = 3
+        label.layer.masksToBounds = false
         return label
     }()
     
@@ -56,7 +81,13 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         let label = UILabel()
         label.text = "--"
         label.textColor = .white
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 16)
+        label.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        label.layer.shadowOffset = CGSize(width: 2, height: 3)
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowRadius = 3
+        label.layer.masksToBounds = false
         return label
     }()
     
@@ -64,7 +95,13 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         let label = UILabel()
         label.text = "--"
         label.textColor = .white
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 16)
+        label.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        label.layer.shadowOffset = CGSize(width: 2, height: 3)
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowRadius = 3
+        label.layer.masksToBounds = false
         return label
     }()
     
@@ -73,9 +110,14 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         button.setTitle("Edit Profile", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.titleLabel?.tintColor = .white
-        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.secondColor)
+        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        button.layer.shadowOffset = CGSize(width: 2.0, height: 3.0)
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 0.9
+        button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(editProfilePressed), for: .touchUpInside)
         return button
     }()
@@ -85,9 +127,14 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         button.setTitle("Logout", for: .normal)
         button.titleLabel?.tintColor = .red
         button.titleLabel?.font = .systemFont(ofSize: 20)
-        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.secondColor)
+        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        button.layer.shadowOffset = CGSize(width: 2.0, height: 3.0)
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 0.9
+        button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(logoutPressed), for: .touchUpInside)
         return button
     }()
@@ -95,7 +142,7 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationItem.title = "Settings"
-        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = true
         navigationItem.setHidesBackButton(true, animated: true)
         self.tabBarController?.navigationItem.hidesBackButton = true
         interactor.loadData()
@@ -112,9 +159,10 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
     
     override func buildViewHierarchy() {
         view.addSubview(cardView)
-        cardView.addSubview(imageView)
+        view.addSubview(gradientImage)
+        gradientImage.addSubview(imageView)
         imageView.addSubview(userImage)
-        cardView.addSubview(verticalStack)
+        gradientImage.addSubview(verticalStack)
         verticalStack.addArrangedSubview(userDisplayName)
         verticalStack.addArrangedSubview(userDisplayEmail)
         verticalStack.addArrangedSubview(userDisplayBio)
@@ -124,16 +172,22 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
     
     override func setupConstraints() {
         cardView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Space.none.rawValue)
+            $0.top.equalTo(view.snp.top).offset(Space.none.rawValue)
             $0.leading.trailing.equalToSuperview().offset(Space.none.rawValue)
-            $0.height.equalTo(225)
+            $0.height.equalTo(400)
         }
         
+        gradientImage.snp.makeConstraints {
+            $0.top.equalTo(view.snp.top).offset(Space.none.rawValue)
+            $0.leading.trailing.equalToSuperview().offset(Space.none.rawValue)
+            $0.height.equalTo(400)
+        }
+            
         imageView.snp.makeConstraints {
-            $0.centerY.equalTo(cardView.snp.centerY)
-            $0.leading.equalToSuperview().offset(Space.base06.rawValue)
-            $0.height.equalTo(120)
-            $0.width.equalTo(120)
+            $0.top.equalTo(gradientImage.snp.top).offset(Space.base18.rawValue)
+            $0.centerX.equalTo(gradientImage.snp.centerX)
+            $0.height.equalTo(150)
+            $0.width.equalTo(150)
         }
         
         userImage.snp.makeConstraints {
@@ -141,16 +195,15 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         }
         
         verticalStack.snp.makeConstraints {
-            $0.centerY.equalTo(userImage.snp.centerY)
-            $0.leading.equalTo(userImage.snp.trailing).offset(Space.base05.rawValue)
-            $0.trailing.equalToSuperview().offset(-Space.base03.rawValue)
+            $0.centerX.equalTo(imageView.snp.centerX)
+            $0.top.equalTo(imageView.snp.bottom).offset(Space.base02.rawValue)
         }
         
         editProfileButton.snp.makeConstraints {
-            $0.top.equalTo(cardView.snp.bottom).offset(Space.base05.rawValue)
+            $0.top.equalTo(gradientImage.snp.bottom).offset(Space.base05.rawValue)
             $0.centerX.equalTo(view.snp.centerX)
             $0.height.equalTo(30)
-            $0.width.equalTo(120)
+            $0.width.equalTo(320)
         }
         
         logoutButton.snp.makeConstraints {

@@ -5,6 +5,12 @@ protocol EditProfileDisplaying: AnyObject {
 }
 
 final class EditProfileController: ViewController<EditProfileInteracting,UIView> {
+    private lazy var backgroundImage: UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(named: Constants.Images.blueHorGradient)
+        return image
+    }()
+       
     private lazy var userImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: Constants.Images.profileImage)
@@ -14,34 +20,24 @@ final class EditProfileController: ViewController<EditProfileInteracting,UIView>
         return image
     }()
     
-    private lazy var nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter your new Name"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
+    private lazy var nameTextField = TextFieldView(title: "Enter your new Name")
     
-    private lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter your new Email"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
+    private lazy var emailTextField = TextFieldView(title: "Enter your new Email")
     
-    private lazy var bioTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter your new Bio"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
+    private lazy var bioTextField = TextFieldView(title: "Enter your new Bio")
     
     private lazy var changeImageButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Change Image", for: .normal)
         button.titleLabel?.tintColor = .white
-        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.secondColor)
+        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        button.layer.shadowOffset = CGSize(width: 2.0, height: 3.0)
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowRadius = 0.6
+        button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(changeImagePressed), for: .touchUpInside)
         return button
     }()
@@ -50,9 +46,14 @@ final class EditProfileController: ViewController<EditProfileInteracting,UIView>
         let button = UIButton(type: .system)
         button.setTitle("Confirm Changes", for: .normal)
         button.titleLabel?.tintColor = .white
-        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.secondColor)
+        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
+        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
+        button.layer.shadowOffset = CGSize(width: 2.0, height: 3.0)
+        button.layer.shadowOpacity = 0.4
+        button.layer.shadowRadius = 0.9
+        button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(confirmPressed), for: .touchUpInside)
         return button
     }()
@@ -76,6 +77,7 @@ final class EditProfileController: ViewController<EditProfileInteracting,UIView>
     }
     
     override func buildViewHierarchy() {
+        view.addSubview(backgroundImage)
         view.addSubview(userImage)
         view.addSubview(changeImageButton)
         view.addSubview(nameTextField)
@@ -85,8 +87,12 @@ final class EditProfileController: ViewController<EditProfileInteracting,UIView>
     }
     
     override func setupConstraints() {
+        backgroundImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         userImage.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Space.base06.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Space.base18.rawValue)
             $0.centerX.equalToSuperview()
             $0.height.width.equalTo(120)
         }
@@ -121,11 +127,7 @@ final class EditProfileController: ViewController<EditProfileInteracting,UIView>
     }
     
     @objc private func confirmPressed() {
-        guard let safeBio = bioTextField.text else {
-            print("Change at least your bio")
-            return
-        }
-        interactor.confirmPressed(name: nameTextField.text, email: emailTextField.text, bio: safeBio)
+        interactor.confirmPressed(name: nameTextField.getText(), email: emailTextField.getText(), bio: bioTextField.getText())
     }
     
 }
