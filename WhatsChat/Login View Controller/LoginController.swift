@@ -140,6 +140,7 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     }
     
     override func configureViews() {
+        passwordTextField.setSafeTextEntry()
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         self.hideKeyboardWhenTappedAround()
     }

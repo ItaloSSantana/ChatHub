@@ -84,4 +84,8 @@ class TextFieldView: UIView {
     func setUnusableTextField() {
         textfield.isUserInteractionEnabled = false
     }
+    
+    func setSafeTextEntry() {
+        textfield.isSecureTextEntry = true
+    }
 }
