@@ -12,36 +12,44 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
         return image
     }()
     
-    private lazy var nameTextField: UITextField = {
-       let textField = UITextField()
-        textField.placeholder = "Enter your name"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
+//    private lazy var nameTextField: UITextField = {
+//       let textField = UITextField()
+//        textField.placeholder = "Enter your name"
+//        textField.borderStyle = .roundedRect
+//        return textField
+//    }()
     
-    private lazy var emailTextField: UITextField = {
-       let textField = UITextField()
-        textField.placeholder = "Enter your email"
-        textField.borderStyle = .roundedRect
-        textField.keyboardType = .emailAddress
-        return textField
-    }()
+    private lazy var nameTextField = TextFieldView(title: "Enter your name")
     
-    private lazy var passwordTextField: UITextField = {
-       let textField = UITextField()
-        textField.placeholder = "Enter your password"
-        textField.borderStyle = .roundedRect
-        textField.isSecureTextEntry = true
-        return textField
-    }()
+//    private lazy var emailTextField: UITextField = {
+//       let textField = UITextField()
+//        textField.placeholder = "Enter your email"
+//        textField.borderStyle = .roundedRect
+//        textField.keyboardType = .emailAddress
+//        return textField
+//    }()
     
-    private lazy var rePasswordTextField: UITextField = {
-       let textField = UITextField()
-        textField.placeholder = "Confirm your password"
-        textField.borderStyle = .roundedRect
-        textField.isSecureTextEntry = true
-        return textField
-    }()
+    private lazy var emailTextField = TextFieldView(title: "Enter your email")
+    
+//    private lazy var passwordTextField: UITextField = {
+//       let textField = UITextField()
+//        textField.placeholder = "Enter your password"
+//        textField.borderStyle = .roundedRect
+//        textField.isSecureTextEntry = true
+//        return textField
+//    }()
+//
+    private lazy var passwordTextField = TextFieldView(title: "Enter your password")
+//
+//    private lazy var rePasswordTextField: UITextField = {
+//       let textField = UITextField()
+//        textField.placeholder = "Confirm your password"
+//        textField.borderStyle = .roundedRect
+//        textField.isSecureTextEntry = true
+//        return textField
+//    }()
+    
+    private lazy var rePasswordTextField = TextFieldView(title: "Confirm your password")
     
     private lazy var registerButton: UIButton = {
         let button = UIButton(type: .system)
@@ -115,10 +123,10 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
     }
     
     @objc private func signUpPressed() {
-        interactor.signUpPressed(name: nameTextField.text,
-                                 email: emailTextField.text,
-                                 password: passwordTextField.text,
-                                 rePassword: rePasswordTextField.text)
+        interactor.signUpPressed(name: nameTextField.getText(),
+                                 email: emailTextField.getText(),
+                                 password: passwordTextField.getText(),
+                                 rePassword: rePasswordTextField.getText())
     }
     
     override func configureViews() {

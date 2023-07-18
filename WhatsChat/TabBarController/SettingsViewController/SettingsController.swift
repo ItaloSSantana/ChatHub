@@ -130,7 +130,6 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         }
         
         imageView.snp.makeConstraints {
-            //$0.top.equalTo(cardView.snp.top).offset(Space.base12.rawValue)
             $0.centerY.equalTo(cardView.snp.centerY)
             $0.leading.equalToSuperview().offset(Space.base06.rawValue)
             $0.height.equalTo(120)

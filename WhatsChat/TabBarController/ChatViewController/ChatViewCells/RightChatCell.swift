@@ -8,6 +8,7 @@ class RightChatCell: UITableViewCell {
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
+    
         return view
     }()
     
@@ -17,9 +18,15 @@ class RightChatCell: UITableViewCell {
         return label
     }()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
+        
         buildHierarchy()
     }
     
@@ -49,6 +56,21 @@ class RightChatCell: UITableViewCell {
     
     func setupCell(text: String) {
         label.text = text
+        cellView.addGradientBackground(firstColor: .green, secondColor: .blue)
     }
     
+}
+
+
+extension UIView{
+    func addGradientBackground(firstColor: UIColor, secondColor: UIColor){
+        clipsToBounds = true
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        gradientLayer.frame = self.bounds
+        gradientLayer.startPoint = CGPoint(x: 1, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        print(gradientLayer.frame)
+        self.layer.insertSublayer(gradientLayer, at: 0)
+    }
 }

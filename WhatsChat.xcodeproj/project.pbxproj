@@ -46,6 +46,7 @@
 		0F71A9D92A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DA2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
 		0F71A9DB2A5245ED000FBE3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */; };
+		0FC1B2DA2A66F1A000A1CA4B /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1B2D92A66F1A000A1CA4B /* TextFieldView.swift */; };
 		0FC1F93E2A65A72A001CC456 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1F93D2A65A72A001CC456 /* MessagesViewModel.swift */; };
 		0FC1F9432A65A783001CC456 /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1F9422A65A783001CC456 /* ContactViewModel.swift */; };
 		0FC1F94B2A65A7B1001CC456 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1F94A2A65A7B1001CC456 /* ProfileViewModel.swift */; };
@@ -141,6 +142,7 @@
 		0F71A9C72A523DC6000FBE3E /* WhatsChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsChatUITests.swift; sourceTree = "<group>"; };
 		0F71A9C92A523DC6000FBE3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F71A9D82A5245ED000FBE3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0FC1B2D92A66F1A000A1CA4B /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		0FC1F93D2A65A72A001CC456 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		0FC1F9422A65A783001CC456 /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
 		0FC1F94A2A65A7B1001CC456 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -320,14 +322,10 @@
 		0F71A9A12A523DB3000FBE3E /* WhatsChat */ = {
 			isa = PBXGroup;
 			children = (
+				0FC1B2D82A66F17A00A1CA4B /* Common */,
 				0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */,
 				0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */,
 				0FF711762A53264600132FC8 /* Hexadecimals.swift */,
-				0FF711302A53025000132FC8 /* ViewController.swift */,
-				0FF711A92A53379B00132FC8 /* Constants.swift */,
-				0FF7117E2A532E1100132FC8 /* Spaces.swift */,
-				0FF711B12A533D4E00132FC8 /* DismissKeyboard.swift */,
-				0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */,
 				0FF711392A53027D00132FC8 /* Login View Controller */,
 				0FF7118E2A5331C000132FC8 /* Register View Controller */,
 				0F1469002A545D280012E3A6 /* TabBarController */,
@@ -357,6 +355,19 @@
 				0F71A9C92A523DC6000FBE3E /* Info.plist */,
 			);
 			path = WhatsChatUITests;
+			sourceTree = "<group>";
+		};
+		0FC1B2D82A66F17A00A1CA4B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0FF711302A53025000132FC8 /* ViewController.swift */,
+				0FF711A92A53379B00132FC8 /* Constants.swift */,
+				0FF7117E2A532E1100132FC8 /* Spaces.swift */,
+				0FF711B12A533D4E00132FC8 /* DismissKeyboard.swift */,
+				0FF711542A5315E000132FC8 /* MainFlowCoordinator.swift */,
+				0FC1B2D92A66F1A000A1CA4B /* TextFieldView.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		0FC394022A587D6E00E0FAE4 /* AddContactViewController */ = {
@@ -703,6 +714,7 @@
 				0FC394042A587D8B00E0FAE4 /* AddContactController.swift in Sources */,
 				0F1469022A545D420012E3A6 /* CustomTabBarController.swift in Sources */,
 				0FF711502A53149000132FC8 /* LoginFactory.swift in Sources */,
+				0FC1B2DA2A66F1A000A1CA4B /* TextFieldView.swift in Sources */,
 				0F1468AB2A5456B70012E3A6 /* ContactsFactory.swift in Sources */,
 				0F58CC882A56FDB5007A22A6 /* EditProfileInteractor.swift in Sources */,
 				0FF7119B2A53326200132FC8 /* RegisterPresenter.swift in Sources */,

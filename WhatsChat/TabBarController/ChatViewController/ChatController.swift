@@ -63,7 +63,6 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         chatTableView.dataSource = self
         chatTableView.delegate = self
         imagePicker.delegate = self
-        view.backgroundColor = .white
     }
     
     override func viewWillDisappear(_ animated: Bool) {
