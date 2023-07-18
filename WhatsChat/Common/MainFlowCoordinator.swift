@@ -34,5 +34,6 @@ extension MainFlowCoordinator: RegisterDelegate {
     func continueFlow() {
         let tabController = CustomTabBarController()
         navigationController.pushViewController(tabController, animated: true)
+        self.navigationController.dismiss(animated: true, completion: nil)
     }
 }

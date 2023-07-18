@@ -124,6 +124,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
     }
     
     override func configureViews() {
+        view.backgroundColor = .white
         self.hideKeyboardWhenTappedAround()
     }
 }
