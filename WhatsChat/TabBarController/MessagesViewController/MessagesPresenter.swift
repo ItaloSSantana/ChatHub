@@ -3,6 +3,7 @@ import Foundation
 protocol MessagesPresenting: AnyObject {
     func loadLastMessage(messages: [MessagesViewModel])
     func contactChat(contactData: ContactViewModel)
+    func loadCurrentUserData(userData: ContactViewModel)
 }
 
 final class MessagesPresenter: MessagesPresenting {
@@ -19,6 +20,10 @@ final class MessagesPresenter: MessagesPresenting {
     
     func contactChat(contactData: ContactViewModel) {
         coordinator.contactChat(contactData: contactData)
+    }
+    
+    func loadCurrentUserData(userData: ContactViewModel) {
+        viewController?.loadCurrentUserData(userData: userData)
     }
     
 }

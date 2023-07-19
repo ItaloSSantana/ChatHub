@@ -11,17 +11,17 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         view.clipsToBounds = true
         view.layer.cornerRadius = 80
         view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
-        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
-        view.layer.shadowOffset = CGSize(width: 0.0, height: 4.0)
-        view.layer.shadowOpacity = 0.3
-        view.layer.shadowRadius = 8.0
+        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)?.cgColor
+        view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = 6.0
         view.layer.masksToBounds = false
         return view
     }()
     
     private lazy var gradientImage: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: Constants.Images.blueBackgroundSettings)
+        view.image = UIImage(named: Constants.Images.blueHorGradient)
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 80
@@ -68,7 +68,7 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         label.text = "--"
         label.textColor = .white
         label.textAlignment = .center
-        label.font = UIFont(name: Constants.Fonts.hindVadodaraFont, size: 26)
+        label.font = UIFont(name: Constants.Fonts.hindBold, size: 26)
         label.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
         label.layer.shadowOffset = CGSize(width: 2, height: 3)
         label.layer.shadowOpacity = 0.5
@@ -110,13 +110,13 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         button.setTitle("Edit Profile", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.titleLabel?.tintColor = .white
-        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
+        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
-        button.layer.shadowOffset = CGSize(width: 2.0, height: 3.0)
-        button.layer.shadowOpacity = 0.4
-        button.layer.shadowRadius = 0.9
+        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)?.cgColor
+        button.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 3.0
         button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(editProfilePressed), for: .touchUpInside)
         return button
@@ -125,15 +125,15 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
     private lazy var logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Logout", for: .normal)
-        button.titleLabel?.tintColor = .red
+        button.titleLabel?.tintColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 20)
-        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
+        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
-        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.blackColor)?.cgColor
-        button.layer.shadowOffset = CGSize(width: 2.0, height: 3.0)
-        button.layer.shadowOpacity = 0.4
-        button.layer.shadowRadius = 0.9
+        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)?.cgColor
+        button.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 3.0
         button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(logoutPressed), for: .touchUpInside)
         return button

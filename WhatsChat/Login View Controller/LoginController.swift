@@ -97,7 +97,6 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
         }
         
         logoImage.snp.makeConstraints {
-            //$0.top.equalToSuperview().offset(Space.base27.rawValue)
             $0.width.equalTo(240)
             $0.height.equalTo(240)
             $0.centerX.equalTo(whiteView.snp.centerX)

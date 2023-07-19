@@ -35,6 +35,7 @@ final class ChatInteractor: ChatInteracting {
             self.currentUserID = currentID
         }
         getCurrentUserData()
+        
     }
     
     func sendMessage(message: String) {
@@ -123,6 +124,9 @@ final class ChatInteractor: ChatInteracting {
                         self.messageList.append(safeViewModel)
                     }
                     self.presenter.loadMessages(messages: self.messageList)
+                    if let contactName = self.contactData?.name {
+                        self.presenter.loadContactName(name: contactName)
+                    }
                 }
                 )}
     }

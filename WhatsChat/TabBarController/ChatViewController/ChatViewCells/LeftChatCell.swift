@@ -5,12 +5,17 @@ class LeftChatCell: UITableViewCell {
 
     private lazy var cellView: UIView = {
     let view = UIView()
-        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.thirdColor)
         view.clipsToBounds = true
-        view.layer.cornerRadius = 15
+               view.layer.cornerRadius = 15
+               view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightPurple)
+               view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightPurple)?.cgColor
+               view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+               view.layer.shadowOpacity = 1.0
+               view.layer.shadowRadius = 3.0
+               view.layer.masksToBounds = false
         return view
     }()
-    
+
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = "test"
@@ -42,7 +47,7 @@ class LeftChatCell: UITableViewCell {
             $0.leading.equalToSuperview().offset(Space.base02.rawValue)
             $0.trailing.equalTo(self.snp.trailing).offset(-Space.base15.rawValue)
         }
-        
+
         label.snp.makeConstraints {
             $0.edges.equalTo(cellView).inset(Space.base02.rawValue)
             $0.height.greaterThanOrEqualTo(Space.base04.rawValue)

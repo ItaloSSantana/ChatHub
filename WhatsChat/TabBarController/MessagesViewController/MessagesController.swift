@@ -2,6 +2,7 @@ import UIKit
 
 protocol MessagesDisplaying: AnyObject {
     func loadLastMessages(messages: [MessagesViewModel])
+    func loadCurrentUserData(userData: ContactViewModel)
 }
 
 final class MessagesController: ViewController<MessagesInteracting,UIView> {
@@ -38,10 +39,25 @@ final class MessagesController: ViewController<MessagesInteracting,UIView> {
     
     private lazy var currentUserName: UILabel = {
        let label = UILabel()
-        label.font = UIFont(name: Constants.Fonts.hindVadodaraFont, size: 24)
+        label.font = UIFont(name: Constants.Fonts.hindBold, size: 26)
         label.textColor = .white
-        label.text = "Rafael Cardoso"
+        label.text = "Current Name"
         return label
+    }()
+    
+    private lazy var currentUserBio: UILabel = {
+       let label = UILabel()
+        label.font = UIFont(name: Constants.Fonts.hindVadodaraFont, size: 18)
+        label.textColor = .white
+        label.text = "Current Bio"
+        return label
+    }()
+    
+    private lazy var verticalStack: UIStackView = {
+       let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = -6
+        return stack
     }()
     
     private lazy var whiteView: UIView = {
@@ -78,11 +94,8 @@ final class MessagesController: ViewController<MessagesInteracting,UIView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tabBarController?.navigationItem.title = "Messages"
+        self.navigationController?.isNavigationBarHidden = true
         interactor.loadLastMessage()
-        navigationController?.isNavigationBarHidden = true
-        navigationItem.setHidesBackButton(true, animated: true)
-        self.tabBarController?.navigationItem.hidesBackButton = true
     }
     
     override func viewDidLoad() {
@@ -101,7 +114,9 @@ final class MessagesController: ViewController<MessagesInteracting,UIView> {
         view.addSubview(backgroundImage)
         view.addSubview(imageView)
         imageView.addSubview(userImage)
-        view.addSubview(currentUserName)
+        view.addSubview(verticalStack)
+        verticalStack.addArrangedSubview(currentUserName)
+        verticalStack.addArrangedSubview(currentUserBio)
         view.addSubview(whiteView)
         whiteView.addSubview(messagesTableView)
     }
@@ -122,12 +137,11 @@ final class MessagesController: ViewController<MessagesInteracting,UIView> {
             $0.edges.equalTo(imageView)
         }
         
-        currentUserName.snp.makeConstraints {
+        verticalStack.snp.makeConstraints {
             $0.centerY.equalTo(imageView.snp.centerY)
             $0.leading.equalTo(imageView.snp.trailing).offset(Space.base04.rawValue)
-            $0.width.equalTo(200)
         }
-        
+     
         whiteView.snp.makeConstraints {
             $0.top.equalTo(imageView.snp.bottom).offset(Space.base10.rawValue)
             $0.leading.trailing.bottom.equalToSuperview()
@@ -144,6 +158,12 @@ extension MessagesController: MessagesDisplaying {
     func loadLastMessages(messages: [MessagesViewModel]) {
         messagesList = messages
         messagesTableView.reloadData()
+    }
+    
+    func loadCurrentUserData(userData: ContactViewModel) {
+        currentUserName.text = userData.name
+        userImage.kf.setImage(with: URL(string: userData.image))
+        currentUserBio.text = userData.bio
     }
 }
 

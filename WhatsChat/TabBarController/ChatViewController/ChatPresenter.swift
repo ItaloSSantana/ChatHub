@@ -3,6 +3,7 @@ import Foundation
 protocol ChatPresenting: AnyObject {
     func sendMessage()
     func loadMessages(messages: [ChatViewModel])
+    func loadContactName(name: String)
 }
 
 final class ChatPresenter: ChatPresenting {
@@ -19,6 +20,10 @@ final class ChatPresenter: ChatPresenting {
     
     func loadMessages(messages: [ChatViewModel]) {
         viewController?.loadMessages(messages: messages)
+    }
+    
+    func loadContactName(name: String) {
+        viewController?.loadContactName(name: name)
     }
 }
 

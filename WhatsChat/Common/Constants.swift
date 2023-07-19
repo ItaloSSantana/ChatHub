@@ -7,6 +7,8 @@ struct Constants {
         static let thirdColor = "E3BEC6"
         static let blackColor = "000000"
         static let whiteColor = "FFFFFF"
+        static let lightBlue = "81A7FC"
+        static let lightPurple = "EB94EB"
     }
     
     struct Images {
@@ -26,5 +28,6 @@ struct Constants {
     struct Fonts {
         static let fredokaFont = "Fredoka-Regular"
         static let hindVadodaraFont = "HindVadodara-Regular"
+        static let hindBold = "HindVadodara-Bold"
     }
 }

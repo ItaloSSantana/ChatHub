@@ -2,31 +2,31 @@ import UIKit
 
 class RightChatCell: UITableViewCell {
     static let identifier = "RightChatCell"
-
-    private lazy var cellView: UIView = {
-    let view = UIView()
-        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 10
     
+    private lazy var cellView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 15
+        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)
+        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)?.cgColor
+        view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = 3.0
+        view.layer.masksToBounds = false
+        
         return view
     }()
     
     private lazy var label: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textColor = .black
         return label
     }()
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
-        
         buildHierarchy()
     }
     
@@ -47,20 +47,16 @@ class RightChatCell: UITableViewCell {
             $0.leading.equalToSuperview().offset(Space.base15.rawValue)
             $0.trailing.equalTo(self.snp.trailing).offset(-Space.base02.rawValue)
         }
-        
         label.snp.makeConstraints {
-            $0.edges.equalTo(cellView).inset(Space.base02.rawValue)
+            $0.edges.equalTo(cellView.snp.edges).inset(Space.base02.rawValue)
             $0.height.greaterThanOrEqualTo(Space.base04.rawValue)
         }
     }
     
     func setupCell(text: String) {
         label.text = text
-        cellView.addGradientBackground(firstColor: .green, secondColor: .blue)
     }
-    
 }
-
 
 extension UIView{
     func addGradientBackground(firstColor: UIColor, secondColor: UIColor){
@@ -70,7 +66,6 @@ extension UIView{
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = CGPoint(x: 1, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
-        print(gradientLayer.frame)
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
 }

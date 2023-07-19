@@ -31,6 +31,7 @@ final class MessagesInteractor: MessagesInteracting {
     }
     
     func loadLastMessage() {
+        loadCurrentUserData()
         messageListener = firestore?.collection("chats")
             .document(currentUserID)
             .collection("lastMessage")
@@ -51,6 +52,20 @@ final class MessagesInteractor: MessagesInteracting {
                                                                lastMessage: safeLastMessage))
                     self.presenter.loadLastMessage(messages: self.messagesList)
                 }
+            })
+    }
+    
+    func loadCurrentUserData() {
+        firestore?.collection("users")
+            .document(currentUserID)
+            .getDocument(completion: { (querySnapshot, error) in
+                guard let snapshot = querySnapshot else {return}
+                guard let data = snapshot.data(),
+                      let safeName = data["name"] as? String,
+                      let safeImageUrl = data["imageUrl"] as? String,
+                      let safeBio = data["bio"] as? String else {return}
+                let currentUserData = ContactViewModel(name: safeName, email: "", image: safeImageUrl, bio: safeBio, id: "")
+                self.presenter.loadCurrentUserData(userData: currentUserData)
             })
     }
     

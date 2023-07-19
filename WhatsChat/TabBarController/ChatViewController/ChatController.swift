@@ -4,6 +4,7 @@ import Kingfisher
 protocol ChatDisplaying: AnyObject {
     func sendMessage()
     func loadMessages(messages: [ChatViewModel])
+    func loadContactName(name: String)
 }
 
 final class ChatController: ViewController<ChatInteracting,UIView> {
@@ -135,6 +136,10 @@ extension ChatController: ChatDisplaying {
         chatTableView.reloadData()
     }
     
+    func loadContactName(name: String) {
+        self.title = name
+    }
+    
     func sendMessage() {
         textField.text = ""
     }
@@ -153,25 +158,28 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
         
         let message = messages[indexPath.row]
         
-        if let text = message.text {
-            if message.isSenderCurrentUser {
-                rightCell.setupCell(text: text)
+        if message.isSenderCurrentUser {
+            if let text = message.text {
+                    rightCell.setupCell(text: text)
+
                 return rightCell
             } else {
-                leftCell.setupCell(text: text)
-                return leftCell
-            }
-        } else {
-            if let image = message.imageUrl {
-                if message.isSenderCurrentUser {
+                if let image = message.imageUrl {
                     rightImageCell.setupCell(imageUrl: image)
                     return rightImageCell
-                } else {
+                }
+            }
+        } else {
+            if let text = message.text {
+                leftCell.setupCell(text: text)
+                return leftCell
+            } else {
+                if let image = message.imageUrl {
                     leftImageCell.setupCell(imageUrl: image)
-                    return leftImageCell
                 }
             }
         }
+        
         return UITableViewCell()
     }
 }
