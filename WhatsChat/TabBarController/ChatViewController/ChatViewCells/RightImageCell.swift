@@ -3,18 +3,19 @@ import Kingfisher
 
 class RightImageCell: UITableViewCell {
     static let identifier = "RightImageCell"
-
+    
     private lazy var cellView: UIView = {
         let view = UIView()
-            view.clipsToBounds = true
-                   view.layer.cornerRadius = 15
-                   view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)
-                   view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)?.cgColor
-                   view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-                   view.layer.shadowOpacity = 1.0
-                   view.layer.shadowRadius = 3.0
-                   view.layer.masksToBounds = false
-            return view
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 15
+        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)
+        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightBlue)?.cgColor
+        view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = 3.0
+        view.layer.masksToBounds = false
+        view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner, .layerMinXMinYCorner]
+        return view
     }()
     
     private lazy var cellImage: UIImageView = {
@@ -25,6 +26,7 @@ class RightImageCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
+        self.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         buildHierarchy()
     }
     
@@ -40,8 +42,8 @@ class RightImageCell: UITableViewCell {
     
     private func setupConstraints() {
         cellView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Space.base02.rawValue)
-            $0.bottom.equalToSuperview().offset(-Space.base02.rawValue)
+            $0.top.equalToSuperview().offset(Space.base04.rawValue)
+            $0.bottom.equalToSuperview().offset(-Space.base04.rawValue)
             $0.leading.equalToSuperview().offset(Space.base15.rawValue)
             $0.trailing.equalTo(self.snp.trailing).offset(-Space.base02.rawValue)
             $0.height.equalTo(200)

@@ -13,7 +13,7 @@ class RightChatCell: UITableViewCell {
         view.layer.shadowOpacity = 1.0
         view.layer.shadowRadius = 3.0
         view.layer.masksToBounds = false
-        
+        view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner, .layerMinXMinYCorner]
         return view
     }()
     
@@ -27,6 +27,7 @@ class RightChatCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
+        self.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         buildHierarchy()
     }
     
@@ -42,8 +43,8 @@ class RightChatCell: UITableViewCell {
     
     private func setupConstraints() {
         cellView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Space.base02.rawValue)
-            $0.bottom.equalToSuperview().offset(-Space.base02.rawValue)
+            $0.top.equalToSuperview().offset(Space.base04.rawValue)
+            $0.bottom.equalToSuperview().offset(-Space.base04.rawValue)
             $0.leading.equalToSuperview().offset(Space.base15.rawValue)
             $0.trailing.equalTo(self.snp.trailing).offset(-Space.base02.rawValue)
         }

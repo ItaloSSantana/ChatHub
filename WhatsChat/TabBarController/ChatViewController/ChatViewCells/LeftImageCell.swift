@@ -25,6 +25,7 @@ class LeftImageCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
+        self.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         buildHierarchy()
     }
     
@@ -40,8 +41,8 @@ class LeftImageCell: UITableViewCell {
     
     private func setupConstraints() {
         cellView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(Space.base02.rawValue)
-            $0.bottom.equalToSuperview().offset(-Space.base02.rawValue)
+            $0.top.equalToSuperview().offset(Space.base04.rawValue)
+            $0.bottom.equalToSuperview().offset(-Space.base04.rawValue)
             $0.leading.equalToSuperview().offset(Space.base02.rawValue)
             $0.trailing.equalTo(self.snp.trailing).offset(-Space.base15.rawValue)
             $0.height.equalTo(200)

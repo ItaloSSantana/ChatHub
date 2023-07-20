@@ -46,6 +46,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         tableView.register(RightChatCell.self, forCellReuseIdentifier: RightChatCell.identifier)
         tableView.register(RightImageCell.self, forCellReuseIdentifier: RightImageCell.identifier)
         tableView.register(LeftImageCell.self, forCellReuseIdentifier: LeftImageCell.identifier)
+        tableView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
         return tableView
@@ -155,8 +156,8 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
         guard let leftCell = tableView.dequeueReusableCell(withIdentifier: LeftChatCell.identifier, for: indexPath) as? LeftChatCell else {return UITableViewCell()}
         guard let rightImageCell = tableView.dequeueReusableCell(withIdentifier: RightImageCell.identifier, for: indexPath) as? RightImageCell else {return UITableViewCell()}
         guard let leftImageCell = tableView.dequeueReusableCell(withIdentifier: LeftImageCell.identifier, for: indexPath) as? LeftImageCell else {return UITableViewCell()}
-        
-        let message = messages[indexPath.row]
+        let reversedMessages: [ChatViewModel] = messages.reversed()
+        let message = reversedMessages[indexPath.row]
         
         if message.isSenderCurrentUser {
             if let text = message.text {
@@ -192,4 +193,5 @@ extension ChatController: UIImagePickerControllerDelegate, UINavigationControlle
         }
     }
 }
+
 

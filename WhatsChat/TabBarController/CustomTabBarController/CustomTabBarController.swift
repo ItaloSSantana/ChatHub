@@ -40,7 +40,7 @@ extension CustomTabBarController: ContactsDelegate {
     
     func addPressed(){
         let editController = AddContactFactory.make(delegate: self)
-        navigationController?.pushViewController(editController, animated: true)
+        navigationController?.present(editController, animated: true)
     }
 }
 
