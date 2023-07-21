@@ -147,14 +147,14 @@ final class SettingsController: ViewController<SettingsInteracting,UIView> {
         self.tabBarController?.navigationItem.hidesBackButton = true
         interactor.loadData()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        interactor.removeListener()
     }
     
     override func buildViewHierarchy() {

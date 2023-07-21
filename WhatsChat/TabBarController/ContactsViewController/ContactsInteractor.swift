@@ -8,6 +8,7 @@ protocol ContactsInteracting: AnyObject {
     func addPressed()
     func searchPressed(text: String)
     func contactChat(sender: ContactViewModel)
+    func removeListener()
 }
 
 final class ContactsInteractor: ContactsInteracting {
@@ -18,6 +19,7 @@ final class ContactsInteractor: ContactsInteracting {
     private var storage: Storage?
     private var currentUserID = ""
     private var contactList: [ContactViewModel] = []
+    private var messageListener: ListenerRegistration?
     
     init(presenter: ContactsPresenting) {
         self.presenter = presenter
@@ -33,11 +35,11 @@ final class ContactsInteractor: ContactsInteracting {
     func loadData() {
         contactList.removeAll()
         presenter.isLoadEnabled(verify: true)
-        firestore?.collection("users")
+        messageListener = firestore?.collection("users")
             .document(currentUserID)
             .collection("contacts")
             .order(by: "name", descending: true)
-            .getDocuments(completion: { (resultSnapshot, error) in
+            .addSnapshotListener({ (resultSnapshot, error) in
                 guard let snapshot = resultSnapshot else {
                     print("cannot get user")
                     return}
@@ -48,16 +50,20 @@ final class ContactsInteractor: ContactsInteracting {
                           let safeBio = contactData["bio"] as? String,
                           let safeUrl = contactData["imageUrl"] as? String,
                           let safeId = contactData["id"] as? String else {return}
-                          self.contactList.append(ContactViewModel(name: safeName,
-                                                                email: safeEmail,
-                                                                image: safeUrl,
-                                                                bio: safeBio,
-                                                                id: safeId))
-                        self.presenter.displayScreen(contacts: self.contactList)
-                        self.presenter.isLoadEnabled(verify: false)
+                    self.contactList.append(ContactViewModel(name: safeName,
+                                                             email: safeEmail,
+                                                             image: safeUrl,
+                                                             bio: safeBio,
+                                                             id: safeId))
+                    self.presenter.displayScreen(contacts: self.contactList)
+                    self.presenter.isLoadEnabled(verify: false)
                     
                 }
             })
+    }
+    
+    func removeListener() {
+        messageListener?.remove()
     }
     
     func searchPressed(text: String) {

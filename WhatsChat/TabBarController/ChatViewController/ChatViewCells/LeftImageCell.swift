@@ -6,15 +6,15 @@ class LeftImageCell: UITableViewCell {
 
     private lazy var cellView: UIView = {
         let view = UIView()
-            view.clipsToBounds = true
-                   view.layer.cornerRadius = 15
-                   view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightPurple)
-                   view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightPurple)?.cgColor
-                   view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
-                   view.layer.shadowOpacity = 1.0
-                   view.layer.shadowRadius = 3.0
-                   view.layer.masksToBounds = false
-            return view
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 15
+        view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.lightPurple)
+        view.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.lightPurple)?.cgColor
+        view.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowRadius = 3.0
+        view.layer.masksToBounds = false
+        return view
     }()
     
     private lazy var cellImage: UIImageView = {

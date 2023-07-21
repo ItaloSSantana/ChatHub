@@ -77,6 +77,7 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.navigationItem.rightBarButtonItem = nil
+        interactor.removeListener()
     }
     
     override func buildViewHierarchy() {

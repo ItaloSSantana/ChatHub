@@ -203,6 +203,7 @@ extension ChatController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 if let image = message.imageUrl {
                     leftImageCell.setupCell(imageUrl: image)
+                    return leftImageCell
                 }
             }
         }
