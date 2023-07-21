@@ -36,15 +36,24 @@ final class AddContactController: ViewController<AddContactInteracting,UIView> {
         return button
     }()
     
+    var initialBounds: CGRect?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.view.frame = CGRect(x: 0, y: UIScreen.main.bounds.height / 3.5 * 2, width: self.view.bounds.width, height: UIScreen.main.bounds.height / 5 * 3)
-        self.view.layer.cornerRadius = 20
-        self.view.layer.masksToBounds = true
+        if initialBounds == nil {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            
+            initialBounds = view.bounds
+            view.layer.cornerRadius = 20
+            view.layer.masksToBounds = true
+            view.frame = CGRect(x: 0, y: view.bounds.height / 3.5 * 2, width: view.bounds.width, height: view.bounds.height / 5 * 3)
+            
+        }
     }
     
     override func buildViewHierarchy() {
@@ -78,6 +87,10 @@ final class AddContactController: ViewController<AddContactInteracting,UIView> {
         }
     }
     
+    override func configureViews() {
+        hideKeyboardWhenTappedAround()
+    }
+    
     @objc private func addContactPressed() {
         interactor.addContactPressed(email: emailTextField.getText())
     }
@@ -85,6 +98,28 @@ final class AddContactController: ViewController<AddContactInteracting,UIView> {
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
            dismiss(animated: true, completion: nil)
        }
+    
+    @objc func keyboardWillShow() {
+        guard let initialBounds = initialBounds else {
+            return
+        }
+        self.view.frame = initialBounds
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc func keyboardWillHide() {
+        guard let initialBounds = initialBounds else {
+            return
+        }
+        self.view.frame = CGRect(x: 0, y: initialBounds.height / 3.5 * 2, width: initialBounds.width, height: initialBounds.height / 5 * 3)
+        self.view.layoutIfNeeded()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
 }
 
 extension AddContactController: AddContactDisplaying {
