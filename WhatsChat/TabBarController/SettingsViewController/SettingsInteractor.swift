@@ -32,7 +32,7 @@ final class SettingsInteractor: SettingsInteracting {
                       let safeName = safeData["name"] as? String,
                       let safeBio = safeData["bio"] as? String,
                       let safeEmail = safeData["email"] as? String,
-                      let imageUrl = safeData["imageUrl"] as? String,
+                      let imageUrl = safeData["imageUrl"] as? String, // Download image without kingfisher and firebaseStorageUI
                       let storageRef = self.storage?.reference(forURL: imageUrl) else {return}
                 storageRef.getData(maxSize: 2 * 1024 * 1024) { (data, error) -> Void in
                     guard let safeData = data else {return}

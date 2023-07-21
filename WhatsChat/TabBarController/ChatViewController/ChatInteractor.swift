@@ -52,12 +52,14 @@ final class ChatInteractor: ChatInteracting {
                 var chat: Dictionary<String, Any> = [
                     "lastMessage": message
                 ]
+                //Save text to current user
                 chat["userID"] = currentUserID as Any
                 chat["contactID"] = safeContact.id as Any
                 chat["contactName"] = contactData?.name as Any
                 chat["contactPhotoUrl"] = contactData?.image as Any
                 saveChat(currentID: currentUserID, contactID: safeContact.id, chat: chat)
                 
+                //save text to contact
                 chat["userID"] = safeContact.id as Any
                 chat["contactID"] = currentUserID as Any
                 chat["contactName"] = currentUserName
@@ -79,7 +81,7 @@ final class ChatInteractor: ChatInteracting {
                 self.currentUserImageUrl = safeUrl
             })
     }
-    
+  
     private func saveMessage(currentID: String, contactID: String, message: Dictionary<String, Any>) {
         firestore?.collection("messages")
             .document(currentID)
@@ -154,12 +156,13 @@ final class ChatInteractor: ChatInteracting {
                         self.saveMessage(currentID: self.currentUserID, contactID: safeContact.id, message: msg)
                         self.saveMessage(currentID: safeContact.id, contactID: self.currentUserID, message: msg)
                         
-                        // Save to Messages screen
+                        // Save last message
                         var chat: Dictionary<String, Any> = [
                             "userID": self.currentUserID,
                             "contactID": safeContact.id,
                             "lastMessage": "Image..."
                         ]
+                        
                         chat["userID"] = self.currentUserID as Any
                         chat["contactID"] = safeContact.id as Any
                         chat["contactName"] = self.contactData?.name as Any

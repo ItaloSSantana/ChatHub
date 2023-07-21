@@ -29,7 +29,7 @@ final class ContactsInteractor: ContactsInteracting {
             self.currentUserID = currentID
         }
     }
-    
+    //Load data from database
     func loadData() {
         contactList.removeAll()
         presenter.isLoadEnabled(verify: true)

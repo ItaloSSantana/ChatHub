@@ -338,7 +338,6 @@
 				0FC1B2D82A66F17A00A1CA4B /* Common */,
 				0F71A9A22A523DB3000FBE3E /* AppDelegate.swift */,
 				0F71A9A42A523DB3000FBE3E /* SceneDelegate.swift */,
-				0FF711762A53264600132FC8 /* Hexadecimals.swift */,
 				0FF711392A53027D00132FC8 /* Login View Controller */,
 				0FF7118E2A5331C000132FC8 /* Register View Controller */,
 				0F1469002A545D280012E3A6 /* TabBarController */,
@@ -373,6 +372,7 @@
 		0FC1B2D82A66F17A00A1CA4B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0FF711762A53264600132FC8 /* Hexadecimals.swift */,
 				0FF711302A53025000132FC8 /* ViewController.swift */,
 				0FF711A92A53379B00132FC8 /* Constants.swift */,
 				0FF7117E2A532E1100132FC8 /* Spaces.swift */,

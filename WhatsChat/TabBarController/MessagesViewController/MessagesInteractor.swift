@@ -29,7 +29,7 @@ final class MessagesInteractor: MessagesInteracting {
             self.currentUserID = currentID
         }
     }
-    
+    // Load last messages
     func loadLastMessage() {
         loadCurrentUserData()
         messageListener = firestore?.collection("chats")
@@ -54,7 +54,7 @@ final class MessagesInteractor: MessagesInteracting {
                 }
             })
     }
-    
+    // Load current user
     func loadCurrentUserData() {
         firestore?.collection("users")
             .document(currentUserID)

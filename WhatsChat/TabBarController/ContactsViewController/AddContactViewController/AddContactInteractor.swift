@@ -24,9 +24,9 @@ final class AddContactInteractor: AddContactInteracting {
             self.currentUserID = currentID
             self.currentUserEmail = currentEmail
         }
-        
     }
     
+    // Save new contact button action
     func addContactPressed(email: String?) {
         guard let safeEmail = email, safeEmail != currentUserEmail else {
             print("Not a valid email")
@@ -55,6 +55,7 @@ final class AddContactInteractor: AddContactInteracting {
             }
     }
     
+    // Save the contact Data
     private func saveContact(contactData: Dictionary<String, Any>) {
         guard let safeContactID = contactData["id"] else {return}
         firestore?.collection("users")

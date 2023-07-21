@@ -95,6 +95,7 @@ final class AddContactController: ViewController<AddContactInteracting,UIView> {
         interactor.addContactPressed(email: emailTextField.getText())
     }
 
+    // Hide and show keyboard actions
     @objc func keyboardWillShow() {
         guard let initialBounds = initialBounds else {
             return
