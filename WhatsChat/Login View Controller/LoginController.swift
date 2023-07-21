@@ -61,6 +61,8 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
         return button
     }()
     
+    var initialBounds: CGRect?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
@@ -74,6 +76,16 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.verifyLogin()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if initialBounds == nil {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            view.layer.masksToBounds = true
+            initialBounds = view.bounds
+        }
     }
     
     override func buildViewHierarchy() {
@@ -143,6 +155,22 @@ final class LoginController: ViewController<LoginInteracting, UIView> {
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
         self.hideKeyboardWhenTappedAround()
     }
+    
+    @objc func keyboardWillShow() {
+        guard let initialBounds = initialBounds else {return}
+        self.view.frame = CGRect(x: 0, y: -initialBounds.height / 3.5, width: UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc func keyboardWillHide() {
+        self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        self.view.layoutIfNeeded()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
 
 extension LoginController: LoginDisplaying {

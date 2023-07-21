@@ -67,6 +67,8 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
         return button
     }()
     
+    var initialBounds: CGRect?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
@@ -75,6 +77,16 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if initialBounds == nil {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            view.layer.masksToBounds = true
+            initialBounds = view.bounds
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -158,6 +170,21 @@ final class RegisterController: ViewController<RegisterInteracting, UIView> {
         self.hideKeyboardWhenTappedAround()
         passwordTextField.setSafeTextEntry()
         rePasswordTextField.setSafeTextEntry()
+    }
+    
+    @objc func keyboardWillShow() {
+        guard let initialBounds = initialBounds else {return}
+        self.view.frame = CGRect(x: 0, y: -initialBounds.height / 3.3, width: UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc func keyboardWillHide() {
+        self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        self.view.layoutIfNeeded()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
 }

@@ -54,6 +54,7 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
     
     var messages: [ChatViewModel] = []
     private var imagePicker = UIImagePickerController()
+    var initialBounds: CGRect?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,6 +67,16 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
         chatTableView.dataSource = self
         chatTableView.delegate = self
         imagePicker.delegate = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if initialBounds == nil {
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+            view.layer.masksToBounds = true
+            initialBounds = view.bounds
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -128,6 +139,21 @@ final class ChatController: ViewController<ChatInteracting,UIView> {
     override func configureViews() {
         view.backgroundColor = .white
         self.hideKeyboardWhenTappedAround()
+    }
+    
+    @objc func keyboardWillShow() {
+        guard let initialBounds = initialBounds else {return}
+        self.view.frame = CGRect(x: 0, y: -initialBounds.height / 2.8, width: UIScreen.main.bounds.size.width, height:  UIScreen.main.bounds.size.height)
+        self.view.layoutIfNeeded()
+    }
+    
+    @objc func keyboardWillHide() {
+        self.view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        self.view.layoutIfNeeded()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

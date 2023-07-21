@@ -113,7 +113,9 @@ final class ContactsController: ViewController<ContactsInteracting,UIView> {
     }
     
     override func configureViews() {
-        self.hideKeyboardWhenTappedAround()
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+         view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
     }
 }
 
@@ -174,8 +176,9 @@ extension ContactsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.contactsTableView.deselectRow(at: indexPath, animated: true)
         let contact = contactList[indexPath.row]
+        print("selectec")
         interactor.contactChat(sender: contact)
+        self.contactsTableView.deselectRow(at: indexPath, animated: true)
     }
 }

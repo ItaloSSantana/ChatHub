@@ -94,11 +94,7 @@ final class AddContactController: ViewController<AddContactInteracting,UIView> {
     @objc private func addContactPressed() {
         interactor.addContactPressed(email: emailTextField.getText())
     }
-    
-    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-           dismiss(animated: true, completion: nil)
-       }
-    
+
     @objc func keyboardWillShow() {
         guard let initialBounds = initialBounds else {
             return
