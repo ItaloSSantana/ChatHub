@@ -5,63 +5,63 @@ protocol AddContactDisplaying: AnyObject {
 }
 
 final class AddContactController: ViewController<AddContactInteracting,UIView> {
+    private lazy var backgroundGradient: UIImageView = {
+       let imageView = UIImageView()
+        imageView.image = UIImage(named: Constants.Images.blueHorGradient)
+        return imageView
+    }()
+    
     private lazy var addLabel: UILabel = {
         let label = UILabel()
         label.text = "Enter new contact email to add new contact"
-        return label
-    }()
-    
-    private lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter your new contact email"
-        textField.borderStyle = .roundedRect
-        return textField
-    }()
-    
-    private lazy var errorLabel: UILabel = {
-        let label = UILabel()
-        label.text = "error"
         label.textAlignment = .center
-        label.textColor = .red
         return label
     }()
-    
+
+    private lazy var emailTextField = TextFieldView(title: "Enter your new contact email")
+
     private lazy var confirmButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Add Contact", for: .normal)
         button.titleLabel?.tintColor = .white
-        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.secondColor)
         button.clipsToBounds = true
         button.layer.cornerRadius = 15
+        button.backgroundColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)
+        button.layer.shadowColor = UIColor(hexaRGBA: Constants.Colors.defaultColor)?.cgColor
+        button.layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowRadius = 3.0
+        button.layer.masksToBounds = false
         button.addTarget(self, action: #selector(addContactPressed), for: .touchUpInside)
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        let newView = UIView(frame: CGRect(x: 0, y: 500, width: self.view.frame.width, height: 400))
-             newView.backgroundColor = .yellow
-             newView.layer.cornerRadius = 20
-
-             self.view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-
-             self.view.addSubview(newView)
-             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-             self.view.addGestureRecognizer(tap)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.view.frame = CGRect(x: 0, y: UIScreen.main.bounds.height / 3.5 * 2, width: self.view.bounds.width, height: UIScreen.main.bounds.height / 5 * 3)
+        self.view.layer.cornerRadius = 20
+        self.view.layer.masksToBounds = true
     }
     
     override func buildViewHierarchy() {
+        view.addSubview(backgroundGradient)
         view.addSubview(addLabel)
         view.addSubview(emailTextField)
         view.addSubview(confirmButton)
-        view.addSubview(errorLabel)
     }
     
     override func setupConstraints() {
+        backgroundGradient.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
         addLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Space.base04.rawValue)
-            $0.leading.trailing.equalToSuperview().offset(Space.base04.rawValue)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(Space.base08.rawValue)
+            $0.leading.trailing.equalToSuperview().inset(Space.base04.rawValue)
             $0.height.equalTo(20)
         }
         
@@ -74,22 +74,17 @@ final class AddContactController: ViewController<AddContactInteracting,UIView> {
         confirmButton.snp.makeConstraints {
             $0.top.equalTo(emailTextField.snp.bottom).offset(Space.base02.rawValue)
             $0.centerX.equalToSuperview()
-        }
-        
-        errorLabel.snp.makeConstraints {
-            $0.top.equalTo(confirmButton.snp.bottom).offset(Space.base02.rawValue)
-            $0.leading.trailing.equalToSuperview().inset(Space.base04.rawValue)
+            $0.leading.trailing.equalToSuperview().inset(Space.base20.rawValue)
         }
     }
     
     @objc private func addContactPressed() {
-        interactor.addContactPressed(email: emailTextField.text)
+        interactor.addContactPressed(email: emailTextField.getText())
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
            dismiss(animated: true, completion: nil)
        }
-    
 }
 
 extension AddContactController: AddContactDisplaying {
